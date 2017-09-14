@@ -26,7 +26,7 @@ The team decided to use Android Studio to create an android application. The ser
 * *Server - Use nodeJS (HTTP server)*.
 
 ## Work History
-##### Phase zero 	: Getting Started (TODO: 9/9/17)
+##### ~Phase zero 	: Getting Started (TODO: 9/9/17)~
 * Get Android studio and play with it 
 ##### Phase one		: Proof of Concept (TODO: 9/17/17)
 * Do the Hello World of the nodeJS server. 
