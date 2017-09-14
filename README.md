@@ -22,12 +22,12 @@ For the usernames, how would they be unique?
 HTTP Protocol to exchange data in JSON format. This pattern is also called REST.
 *Server* - Use nodeJS (HTTP server).
 
-#### Work History
-**Phase zero**	: Getting Started (TODO: 9/9/17)
-* Get Android studio and play with it /
-**Phase one**	: Proof of Concept (TODO: 9/17/17)
-* Do the Hello World of the nodeJS server. /
-* HTTP GET (get the data out) and HTTP POST, to get and send a text message in a JSON format. /
+### Work History
+##### Phase zero 	: Getting Started (TODO: 9/9/17)
+* Get Android studio and play with it 
+##### Phase one		: Proof of Concept (TODO: 9/17/17)
+* Do the Hello World of the nodeJS server. 
+* HTTP GET (get the data out) and HTTP POST, to get and send a text message in a JSON format. 
 		**Example** 
 ```
 {
