@@ -6,10 +6,13 @@ I'LL FIX THIS LATER STOP
 * The whole development cycle. 
 * How to transform business requirement to software development plan.
 * How to we decide to do what and when?/
+
+## Plan
+
 #### Business Requirement
 An android-only instant messenger software with automatic translation among two people. Our instant messenger will be a phone application and will rely on a phone directory to communicate with other people. The app will support notification of an incoming text. Every user shall be able to select the language that they would want to read the incoming text in. 
 
-#### Account Creation & Management
+##### Account Creation & Management
 As a new user I will open the application and create an account using my phone number, then entering a username and password.
 Forgotten password workflow.
 
