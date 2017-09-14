@@ -28,12 +28,13 @@ Get Android studio and play with it /
 **Phase one**	: Proof of Concept (TODO: 9/17/17)
 Do the Hello World of the nodeJS server. /
 HTTP GET (get the data out) and HTTP POST, to get and send a text message in a JSON format. <return>
-		Example: 
-```{
- 				"index": 12,
-    				"user": "john",
-    				"msg": "some message text"
-				“Language”: “english”
+		**Example** 
+```
+{
+ 	"index": 12,
+    	"user": "john",
+    	"msg": "some message text"
+	“Language”: “english”
 }
 ```	
 Learn to use git. Create a common github repository for this project, everybody needs to contribute to this repo.
