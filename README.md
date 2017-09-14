@@ -29,14 +29,12 @@ Get Android studio and play with it
 Do the Hello World of the nodeJS server. 
 HTTP GET (get the data out) and HTTP POST, to get and send a text message in a JSON format. <return>
 		Example: 
-	```
-	{
+```{
  				"index": 12,
     				"user": "john",
     				"msg": "some message text"
 				“Language”: “english”
-	}
-  ```
+}```
 Learn to use git. Create a common github repository for this project, everybody needs to contribute to this repo.
 Create a test client to test a nodeJS server. Create a server and client in Java. 
 Research how to use Java to send and receive JSON via HTTP.
