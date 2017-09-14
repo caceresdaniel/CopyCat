@@ -14,13 +14,13 @@ As a new user I will open the application and create an account using my phone n
 Forgotten password workflow.
 
 #### Development Plan
-**Tools used**
+**Tools used**\
 The team decided to use Android Studio to create an android application. The server is going to run on a Windows PC.
 
 #### Things to Keep in Mind
-For the usernames, how would they be unique?
-HTTP Protocol to exchange data in JSON format. This pattern is also called REST.
-*Server* - Use nodeJS (HTTP server).
+* For the usernames, how would they be unique?
+* HTTP Protocol to exchange data in JSON format. This pattern is also called REST.
+* *Server - Use nodeJS (HTTP server)*.
 
 ## Work History
 ##### Phase zero 	: Getting Started (TODO: 9/9/17)
