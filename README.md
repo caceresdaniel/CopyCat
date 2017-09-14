@@ -24,10 +24,10 @@ HTTP Protocol to exchange data in JSON format. This pattern is also called REST.
 
 #### Work History
 **Phase zero**	: Getting Started (TODO: 9/9/17)
-Get Android studio and play with it /
+* Get Android studio and play with it /
 **Phase one**	: Proof of Concept (TODO: 9/17/17)
-Do the Hello World of the nodeJS server. /
-HTTP GET (get the data out) and HTTP POST, to get and send a text message in a JSON format. <return>
+* Do the Hello World of the nodeJS server. /
+* HTTP GET (get the data out) and HTTP POST, to get and send a text message in a JSON format. /
 		**Example** 
 ```
 {
@@ -37,6 +37,7 @@ HTTP GET (get the data out) and HTTP POST, to get and send a text message in a J
 	“Language”: “english”
 }
 ```	
-Learn to use git. Create a common github repository for this project, everybody needs to contribute to this repo.
-Create a test client to test a nodeJS server. Create a server and client in Java. 
-Research how to use Java to send and receive JSON via HTTP.
+* Learn to use git. Create a common github repository for this project, everybody needs to                                      contribute to this repo.
+* Create a test client to test a nodeJS server. Create a server and client in Java. 
+* Research how to use Java to send and receive JSON via HTTP.
+
