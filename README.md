@@ -38,7 +38,7 @@ Once youve pushed to your branch and you want to merge them with the master brac
 ## Work History
 ##### ~Phase zero 	: Getting Started (TODO: 9/9/17)~
 * Get Android studio and play with it 
-##### Phase one		: Proof of Concept (TODO: 9/17/17)
+##### Phase one		: Proof of Concept (TODO: 9/17/17)~
 * Do the Hello World of the nodeJS server. 
 * HTTP GET (get the data out) and HTTP POST, to get and send a text message in a JSON format. 
 		**Example** 
