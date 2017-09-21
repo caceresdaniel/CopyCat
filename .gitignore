@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #added comment for testing purposes
 /bin
 =======
@@ -100,4 +99,3 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
->>>>>>> 3273aa49d0ab7cdbc4be0d6c04bb2d700d73899e
