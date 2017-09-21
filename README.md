@@ -53,7 +53,6 @@ Once youve pushed to your branch and you want to merge them with the master brac
 * Learn to use git. Create a common github repository for this project, everybody needs to                                      contribute to this repo.
 * Create a test client to test a nodeJS server. Create a server and client in Java. 
 * Research how to use Java to send and receive JSON via HTTP.
-<<<<<<< HEAD
 
 <!--git pull
     Always work in your branch!
