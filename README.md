@@ -1,5 +1,4 @@
 # CopyCat
-<<<<<<< HEAD
 **Our Goals**
 * Learn about networking.
 * The whole development cycle. 
@@ -55,10 +54,9 @@ Once youve pushed to your branch and you want to merge them with the master brac
 * Create a test client to test a nodeJS server. Create a server and client in Java. 
 * Research how to use Java to send and receive JSON via HTTP.
 
-=======
 <!--git pull
     Always work in your branch!
     git add
     git commit
     git push-->
->>>>>>> Wally
+
