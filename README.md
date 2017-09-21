@@ -60,6 +60,3 @@ Once youve pushed to your branch and you want to merge them with the master brac
     git add
     git commit
     git push-->
-
-=======
->>>>>>> 3273aa49d0ab7cdbc4be0d6c04bb2d700d73899e
