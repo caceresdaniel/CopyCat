@@ -3,9 +3,7 @@
 * Learn about networking.
 * The whole development cycle. 
 * How to transform business requirement to software development plan.
-* How do we decide to do what and when?
-
-<!--hello-->
+* How to we decide to do what and when?
 
 ## Plan
 
@@ -20,12 +18,12 @@ Forgotten password workflow.
 **Tools used**\
 The team decided to use Android Studio to create an android application. The server is going to run on a Windows PC.
 
-#### Things to Keep in Mind
+## Things to Keep in Mind
 * For the usernames, how would they be unique?
 * HTTP Protocol to exchange data in JSON format. This pattern is also called REST.
 * *Server - Use nodeJS (HTTP server)*.
 
-##### Steps for Github
+##### Steps to Git
 
 * Always pull before anything make sure your master and your current working branch are up to date to check type git status, since we will just be working on our own individual branches we just need to update our branches to the master branch to do so type git pull origin master this will pull the files from the master repo in to your current working branch
 
@@ -40,7 +38,7 @@ Once youve pushed to your branch and you want to merge them with the master brac
 ## Work History
 ##### ~Phase zero 	: Getting Started (TODO: 9/9/17)~
 * Get Android studio and play with it 
-##### Phase one		: Proof of Concept (TODO: 9/17/17)~
+##### ~Phase one		: Proof of Concept (TODO: 9/17/17)~
 * Do the Hello World of the nodeJS server. 
 * HTTP GET (get the data out) and HTTP POST, to get and send a text message in a JSON format. 
 		**Example** 
@@ -55,9 +53,7 @@ Once youve pushed to your branch and you want to merge them with the master brac
 * Learn to use git. Create a common github repository for this project, everybody needs to                                      contribute to this repo.
 * Create a test client to test a nodeJS server. Create a server and client in Java. 
 * Research how to use Java to send and receive JSON via HTTP.
+##### ~Phase two			: Create the Messenger (TODO: 10/27/17)~
+* Review socket.io and follow tutorial to get some work (hopefully) done to share with the team.
+* https://socket.io/blog/native-socket-io-and-android/
 
-<!--git pull
-    Always work in your branch!
-    git add
-    git commit
-    git push-->
