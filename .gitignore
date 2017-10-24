@@ -1,6 +1,15 @@
 #added comment for testing purposes
 node_modules
 /bin
+.gradle
+.idea
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+*.iml
+
 =======
 ### Android ###
 # Built application files
