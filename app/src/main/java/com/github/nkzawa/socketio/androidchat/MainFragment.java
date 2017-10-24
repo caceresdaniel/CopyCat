@@ -220,6 +220,7 @@ public class MainFragment extends Fragment {
         addLog(getResources().getQuantityString(R.plurals.message_participants, numUsers, numUsers));
     }
 
+    //This will be where we will add the translation.
     private void addMessage(String username, String message) {
         mMessages.add(new Message.Builder(Message.TYPE_MESSAGE)
                 .username(username).message(message).build());
