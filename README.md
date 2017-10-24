@@ -1,15 +1,4 @@
 # CopyCat
-
-# socket.io-android-chat
-
-This is a simple chat demo for socket.io and Android. You can connect to [https://socket-io-chat.now.sh](https://socket-io-chat.now.sh) using this app.
-
-Code Obtained from https://github.com/nkzawa/socket.io-android-chat
-
-## License
-
-MIT
-
 **Our Goals**
 * Learn about networking.
 * The whole development cycle. 
@@ -68,3 +57,12 @@ Once youve pushed to your branch and you want to merge them with the master brac
 * Review socket.io and follow tutorial to get some work (hopefully) done to share with the team.
 * https://socket.io/blog/native-socket-io-and-android/
 
+# socket.io-android-chat
+
+This is a simple chat demo for socket.io and Android. You can connect to [https://socket-io-chat.now.sh](https://socket-io-chat.now.sh) using this app.
+
+Code Obtained from https://github.com/nkzawa/socket.io-android-chat
+
+## License
+
+MIT
