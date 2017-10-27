@@ -13,14 +13,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="185dp"
-            android:layout_height="225dp"
+            android:layout_height="169dp"
             android:layout_gravity="center"
-            android:src="@drawable/logotrans2" />
+            android:src="@drawable/logotrans2"
+            android:layout_weight="0.28" />
+
+        <TextView
+            android:id="@+id/mainHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="COPYCAT"
+            android:textAlignment="center"
+            android:textSize="52sp" />
 
         <EditText
                 android:id="@+id/username_input"
@@ -34,6 +45,18 @@
                 android:maxLength="14"
                 android:maxLines="1"
                 android:singleLine="true"/>
+
+        <CheckBox
+            android:id="@+id/age_confirmation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:checked="false"
+            android:duplicateParentState="true"
+            android:focusableInTouchMode="true"
+            android:onClick="confirmAge"
+            android:text="@string/age_requirement" />
+
         <Button
                 android:id="@+id/sign_in_button"
                 style="?android:textAppearanceSmall"

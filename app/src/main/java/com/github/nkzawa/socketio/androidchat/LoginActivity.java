@@ -11,23 +11,28 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.CheckBox;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.graphics.Typeface;
 
 
 /**
  * A login screen that offers login via username.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity implements View.OnClickListener{
 
     private EditText mUsernameView;
 
     private String mUsername;
 
-    private Socket mSocket;
+    private CheckBox ageRequirement;
+    private boolean metAgeReq;
+    private TextView mainTitle;
 
+    private Socket mSocket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +40,16 @@ public class LoginActivity extends Activity {
 
         ChatApplication app = (ChatApplication) getApplication();
         mSocket = app.getSocket();
-
+        //Main Title
+        mainTitle = (TextView) findViewById(R.id.mainHeader);
+        Typeface font = Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
+        mainTitle.setTypeface(font);
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.username_input);
+        //Age Requirement
+        ageRequirement = (CheckBox)findViewById(R.id.age_confirmation);
+
+        ageRequirement.setOnClickListener(this);
         mUsernameView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -59,6 +71,16 @@ public class LoginActivity extends Activity {
 
         mSocket.on("login", onLogin);
     }
+    //Checkbox for age Requirement
+    public void onClick(View view){
+        CheckBox ageRequirement = (CheckBox)view;
+        if(ageRequirement.isChecked()){
+            ageRequirement.setError(null);
+            metAgeReq = true;
+        }else{
+            metAgeReq = false;
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -66,7 +88,6 @@ public class LoginActivity extends Activity {
 
         mSocket.off("login", onLogin);
     }
-
     /**
      * Attempts to sign in the account specified by the login form.
      * If there are form errors (invalid username, missing fields, etc.), the
@@ -75,6 +96,7 @@ public class LoginActivity extends Activity {
     private void attemptLogin() {
         // Reset errors.
         mUsernameView.setError(null);
+        ageRequirement.setError(null);
 
         // Store values at the time of the login attempt.
         String username = mUsernameView.getText().toString().trim();
@@ -85,6 +107,12 @@ public class LoginActivity extends Activity {
             // form field with an error.
             mUsernameView.setError(getString(R.string.error_field_required));
             mUsernameView.requestFocus();
+
+            return;
+        }
+        if(!metAgeReq){
+            ageRequirement.setError(getString(R.string.error_field_ageRequired));
+            ageRequirement.requestFocus();
             return;
         }
 
