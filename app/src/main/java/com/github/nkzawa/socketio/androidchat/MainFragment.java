@@ -266,8 +266,9 @@ public class MainFragment extends Fragment {
 
     private void startSignIn() {
         mUsername = null;
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        Intent intent = new Intent(getActivity(),LoginActivity.class);
         startActivityForResult(intent, REQUEST_LOGIN);
+
     }
 
     private void leave() {
