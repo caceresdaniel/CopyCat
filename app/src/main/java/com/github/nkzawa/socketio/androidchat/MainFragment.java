@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -54,6 +55,8 @@ public class MainFragment extends Fragment {
     private Handler mTypingHandler = new Handler();
     private String mUsername;
     private Socket mSocket;
+
+    private String translatedMessage;
 
     private Boolean isConnected = true;
 
@@ -128,6 +131,7 @@ public class MainFragment extends Fragment {
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         mMessagesView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMessagesView.setAdapter(mAdapter);
+
 
         mInputMessageView = (EditText) view.findViewById(R.id.message_input);
         mInputMessageView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -222,9 +226,14 @@ public class MainFragment extends Fragment {
     }
 
     //This will be where we will add the translation.
-    private void addMessage(String username, String message) {
+    private void addMessage(String username, String message) throws ExecutionException, InterruptedException {
+        //TODO: add targetLanguage translation code to params array
+        String[] params = {message};
+        translatedMessage = new Translator().execute(params).get();
+
+
         mMessages.add(new Message.Builder(Message.TYPE_MESSAGE)
-                .username(username).message(message).build());
+                .username(username).message(translatedMessage).build());
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();
     }
@@ -259,7 +268,13 @@ public class MainFragment extends Fragment {
         }
 
         mInputMessageView.setText("");
-        addMessage(mUsername, message);
+        try {
+            addMessage(mUsername, message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // perform the sending message attempt.
         mSocket.emit("new message", message);
@@ -346,8 +361,27 @@ public class MainFragment extends Fragment {
                         return;
                     }
 
+                    String[] params = {message};
+                    //TODO: test and debug using multiple clients; translate after message receive
+                    try {
+                        translatedMessage = new Translator().execute(params).get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
                     removeTyping(username);
-                    addMessage(username, message);
+
+                    try {
+                        addMessage(username, translatedMessage);
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+
                 }
             });
         }
@@ -451,5 +485,7 @@ public class MainFragment extends Fragment {
             mSocket.emit("stop typing");
         }
     };
+
+
 }
 
