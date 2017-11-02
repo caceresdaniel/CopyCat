@@ -92,6 +92,7 @@ public class MainFragment extends Fragment {
         mSocket.on("user left", onUserLeft);
         mSocket.on("typing", onTyping);
         mSocket.on("stop typing", onStopTyping);
+
         mSocket.connect();
 
         startSignIn();
