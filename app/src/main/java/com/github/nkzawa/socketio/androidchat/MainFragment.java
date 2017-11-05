@@ -30,7 +30,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -55,8 +54,6 @@ public class MainFragment extends Fragment {
     private Handler mTypingHandler = new Handler();
     private String mUsername;
     private Socket mSocket;
-
-    private String translatedMessage;
 
     private Boolean isConnected = true;
 
@@ -95,7 +92,6 @@ public class MainFragment extends Fragment {
         mSocket.on("user left", onUserLeft);
         mSocket.on("typing", onTyping);
         mSocket.on("stop typing", onStopTyping);
-
         mSocket.connect();
 
         startSignIn();
@@ -131,7 +127,6 @@ public class MainFragment extends Fragment {
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         mMessagesView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMessagesView.setAdapter(mAdapter);
-
 
         mInputMessageView = (EditText) view.findViewById(R.id.message_input);
         mInputMessageView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -214,6 +209,28 @@ public class MainFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    public boolean onNavigationItemSelected(MenuItem item){
+        //Navigation drawer item clicks here.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.account) {
+            leave();
+            return true;
+        }else if (id == R.id.viewUsers) {
+            leave();
+            return true;
+        }else if (id == R.id.settings) {
+            leave();
+            return true;
+        }else if(id == R.id.tsettings){
+            leave();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void addLog(String message) {
         mMessages.add(new Message.Builder(Message.TYPE_LOG)
                 .message(message).build());
@@ -226,14 +243,9 @@ public class MainFragment extends Fragment {
     }
 
     //This will be where we will add the translation.
-    private void addMessage(String username, String message) throws ExecutionException, InterruptedException {
-        //TODO: add targetLanguage translation code to params array
-        String[] params = {message};
-        translatedMessage = new Translator().execute(params).get();
-
-
+    private void addMessage(String username, String message) {
         mMessages.add(new Message.Builder(Message.TYPE_MESSAGE)
-                .username(username).message(translatedMessage).build());
+                .username(username).message(message).build());
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();
     }
@@ -268,13 +280,7 @@ public class MainFragment extends Fragment {
         }
 
         mInputMessageView.setText("");
-        try {
-            addMessage(mUsername, message);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        addMessage(mUsername, message);
 
         // perform the sending message attempt.
         mSocket.emit("new message", message);
@@ -361,27 +367,8 @@ public class MainFragment extends Fragment {
                         return;
                     }
 
-                    String[] params = {message};
-                    //TODO: test and debug using multiple clients; translate after message receive
-                    try {
-                        translatedMessage = new Translator().execute(params).get();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    }
-
                     removeTyping(username);
-
-                    try {
-                        addMessage(username, translatedMessage);
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-
+                    addMessage(username, message);
                 }
             });
         }
@@ -485,7 +472,4 @@ public class MainFragment extends Fragment {
             mSocket.emit("stop typing");
         }
     };
-
-
 }
-
