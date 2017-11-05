@@ -16,8 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:menu="@menu/menu_navigation"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/navigation_header">
+        android:layout_gravity="start">
 
     </android.support.design.widget.NavigationView>
 
