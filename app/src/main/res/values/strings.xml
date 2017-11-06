@@ -11,6 +11,7 @@
 
     <!--languages-->
     <string name ="languagequestion">Pick a Language to read in...</string>
+    <string name="searchlanguage">Search Language</string>
 
 
 

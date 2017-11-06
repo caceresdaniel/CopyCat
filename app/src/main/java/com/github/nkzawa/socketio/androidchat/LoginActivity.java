@@ -106,11 +106,12 @@ public class LoginActivity extends Activity {
                 return;
             }
 
-            Intent intent = new Intent();
+            Intent intent = new Intent(getApplicationContext(),Language.class);
             intent.putExtra("username", mUsername);
             intent.putExtra("numUsers", numUsers);
             setResult(RESULT_OK, intent);
-            finish();
+            startActivity(intent);
+
         }
     };
 }
