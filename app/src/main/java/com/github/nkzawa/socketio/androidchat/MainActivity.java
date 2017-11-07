@@ -10,8 +10,8 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
+     DrawerLayout mDrawerLayout;
+     ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.container);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.container);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);

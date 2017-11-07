@@ -1,21 +1,22 @@
- package com.github.nkzawa.socketio.androidchat;
-        import android.app.Activity;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.text.TextUtils;
-        import android.view.KeyEvent;
-        import android.view.View;
-        import android.view.View.OnClickListener;
-        import android.view.inputmethod.EditorInfo;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.CheckBox;
-        import io.socket.client.Socket;
-        import io.socket.emitter.Emitter;
-        import org.json.JSONException;
-        import org.json.JSONObject;
-        import android.graphics.Typeface;
+package com.github.nkzawa.socketio.androidchat;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.CheckBox;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+import org.json.JSONException;
+import org.json.JSONObject;
+import android.graphics.Typeface;
 
 
 /**
@@ -29,7 +30,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
     private CheckBox ageRequirement;
     private boolean metAgeReq;
-     TextView mainTitle;
+    private TextView mainTitle;
 
     private Socket mSocket;
     @Override
