@@ -30,12 +30,12 @@
             >
         </activity>
 
-        <activityf
+        <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.AppCompat"
             android:windowSoftInputMode="adjustResize|stateVisible" >
-        </activityf>
+        </activity>
 
     </application>
 

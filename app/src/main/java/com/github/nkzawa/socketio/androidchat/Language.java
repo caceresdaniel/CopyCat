@@ -34,7 +34,7 @@ public class Language extends Activity {
         listView.setAdapter(adapter);
 
 
-//Search
+//Search bar for languages
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
@@ -62,11 +62,14 @@ public class Language extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                //new activity after the Language ListView
+
+
+                //new activity after the Language ListView gets clicked
                 Intent intent = new Intent(getApplicationContext(),MainFragment.class);
                 startActivity(intent);
             }
         });
+
     }
 
 
@@ -76,5 +79,7 @@ public class Language extends Activity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+
 
 }
