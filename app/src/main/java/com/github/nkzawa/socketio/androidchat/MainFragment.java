@@ -209,6 +209,28 @@ public class MainFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    public boolean onNavigationItemSelected(MenuItem item){
+        //Navigation drawer item clicks here.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.account) {
+            leave();
+            return true;
+        }else if (id == R.id.viewUsers) {
+            leave();
+            return true;
+        }else if (id == R.id.settings) {
+            leave();
+            return true;
+        }else if(id == R.id.tsettings){
+            leave();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void addLog(String message) {
         mMessages.add(new Message.Builder(Message.TYPE_LOG)
                 .message(message).build());
@@ -452,4 +474,3 @@ public class MainFragment extends Fragment {
         }
     };
 }
-

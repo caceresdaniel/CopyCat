@@ -40,5 +40,49 @@
             android:text="@string/action_sign_in"
             android:textStyle="bold"/>
 
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:layout_gravity="center_horizontal"
+            android:padding="6dip">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="192dp"
+                android:layout_height="192dp"
+                android:src="@drawable/logotrans2"
+                android:layout_marginEnd="157dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignEnd="@+id/mainHeader" />
+
+            <TextView
+                android:id="@+id/mainHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="55dp"
+                android:text="COPYCAT"
+                android:textAlignment="center"
+                android:textSize="40sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+
+
+        <CheckBox
+            android:id="@+id/age_confirmation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:checked="false"
+            android:duplicateParentState="true"
+            android:focusableInTouchMode="true"
+            android:onClick="confirmAge"
+            android:text="@string/age_requirement" />
+
+
+
     </LinearLayout>
 </ScrollView>
