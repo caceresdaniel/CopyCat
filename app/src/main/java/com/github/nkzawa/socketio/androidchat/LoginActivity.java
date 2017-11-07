@@ -1,24 +1,26 @@
-package com.github.nkzawa.socketio.androidchat;
+ package com.github.nkzawa.socketio.androidchat;
+        import android.app.Activity;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.text.TextUtils;
+        import android.view.KeyEvent;
+        import android.view.View;
+        import android.view.View.OnClickListener;
+        import android.view.inputmethod.EditorInfo;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.TextView;
+        import android.widget.CheckBox;
+        import io.socket.client.Socket;
+        import io.socket.emitter.Emitter;
+        import org.json.JSONException;
+        import org.json.JSONObject;
+        import android.graphics.Typeface;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.TextView;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-
+/**
+ * A login screen that offers login via username.
+ */
 public class LoginActivity extends Activity implements View.OnClickListener{
 
     private EditText mUsernameView;
@@ -27,8 +29,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
     private CheckBox ageRequirement;
     private boolean metAgeReq;
-    private TextView mainTitle;
-
+     TextView mainTitle;
 
     private Socket mSocket;
     @Override
@@ -38,14 +39,10 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
         ChatApplication app = (ChatApplication) getApplication();
         mSocket = app.getSocket();
-
         //Main Title
         mainTitle = (TextView) findViewById(R.id.mainHeader);
         Typeface font = Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
         mainTitle.setTypeface(font);
-
-
-
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.username_input);
         //Age Requirement
@@ -84,7 +81,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         }
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -119,8 +115,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             return;
         }
 
-
-
         mUsername = username;
 
         // perform the user login attempt.
@@ -139,15 +133,11 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 return;
             }
 
-            Intent intent = new Intent(getApplicationContext(),Language.class);
+            Intent intent = new Intent();
             intent.putExtra("username", mUsername);
             intent.putExtra("numUsers", numUsers);
             setResult(RESULT_OK, intent);
-            startActivity(intent);
-
+            finish();
         }
     };
 }
-
-
-

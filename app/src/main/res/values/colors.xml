@@ -12,15 +12,12 @@
     <color name="username9">#3824aa</color>
     <color name="username10">#a700ff</color>
     <color name="username11">#d300e7</color>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-</resources>
-=======
-    <color name="white">#ffffff</color>
-=======
->>>>>>> 57cfd4ae387c21fe317f5b0beef2461f87349f0b
 
+    <!-- Colors for the layout -->
+    <color name="grey1">#5a595b</color>
+    <color name="grey2">#303030</color>
+    <color name="fontGrey">#efefef</color>
 </resources>
->>>>>>> 2db1947a1315bee2a0b69c49d1a829113e0e67e1
