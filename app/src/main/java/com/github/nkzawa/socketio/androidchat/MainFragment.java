@@ -95,7 +95,6 @@ public class MainFragment extends Fragment {
         mSocket.on("user left", onUserLeft);
         mSocket.on("typing", onTyping);
         mSocket.on("stop typing", onStopTyping);
-
         mSocket.connect();
 
         startSignIn();
@@ -131,7 +130,6 @@ public class MainFragment extends Fragment {
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         mMessagesView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMessagesView.setAdapter(mAdapter);
-
 
         mInputMessageView = (EditText) view.findViewById(R.id.message_input);
         mInputMessageView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -207,6 +205,28 @@ public class MainFragment extends Fragment {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_leave) {
+            leave();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onNavigationItemSelected(MenuItem item){
+        //Navigation drawer item clicks here.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.account) {
+            leave();
+            return true;
+        }else if (id == R.id.viewUsers) {
+            leave();
+            return true;
+        }else if (id == R.id.settings) {
+            leave();
+            return true;
+        }else if(id == R.id.tsettings){
             leave();
             return true;
         }
@@ -485,7 +505,4 @@ public class MainFragment extends Fragment {
             mSocket.emit("stop typing");
         }
     };
-
-
 }
-

@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">CopyCat</string>
+    <string name="copycat_splash">COPYCAT</string>
+
     <string name="action_leave">Leave</string>
     <string name="action_send">Send</string>
     <string name="prompt_message">Message</string>
@@ -19,5 +21,12 @@
     <string name="message_user_joined">%s joined</string>
     <string name="message_user_left">%s left</string>
     <string name="user_action_typing">is typing</string>
+    <!--nagivation bar-->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="navi_acc">Account</string>
+    <string name="navi_viewUser">View Users</string>
+    <string name="navi_settings">Account Settings</string>
+    <string name="navi_tSettings">Translation Settings</string>
 
 </resources>
