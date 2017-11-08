@@ -1,8 +1,18 @@
 <resources>
 
+<<<<<<< HEAD
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
 
+=======
+<!-- Base application theme. -->
+<style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+</style>
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/grey2</item>
+    </style>
+>>>>>>> 9157b7b7ff47341f86151e2ccf59b224760ab3bb
 </resources>
