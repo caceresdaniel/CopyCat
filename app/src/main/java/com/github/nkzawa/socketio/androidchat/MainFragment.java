@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -62,6 +63,8 @@ public class MainFragment extends Fragment {
     }
 
 
+
+
     // This event fires 1st, before creation of fragment or any views
     // The onAttach method is called when the Fragment instance is associated with an Activity.
     // This does not mean the Activity is fully initialized.
@@ -69,10 +72,13 @@ public class MainFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mAdapter = new MessageAdapter(context, mMessages);
+
         if (context instanceof Activity){
             //this.listener = (MainActivity) context;
         }
+
     }
+
 
 
     @Override
