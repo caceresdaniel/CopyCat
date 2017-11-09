@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 public class Language extends Activity {
     ListView listView;
-   private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter;
     //search edittext
     EditText search;
 
@@ -28,7 +28,7 @@ public class Language extends Activity {
        /* toolbar =(Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.languages));
         */
-         adapter = new ArrayAdapter<String>(Language.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
+        adapter = new ArrayAdapter<String>(Language.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
         listView.setAdapter(adapter);
 
 
@@ -58,7 +58,7 @@ public class Language extends Activity {
 
 
                 //new activity after the Language ListView gets clicked
-                Intent intent = new Intent(Language.this, MainFragment.class);
+                Intent intent = new Intent(Language.this, MainActivity.class);
                 intent.putExtra("Language",listView.getItemAtPosition(position).toString());
                 startActivity(intent);
             }

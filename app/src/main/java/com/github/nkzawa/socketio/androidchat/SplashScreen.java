@@ -22,16 +22,15 @@ public class SplashScreen extends AppCompatActivity
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),Language.class);
                 startActivity(intent);
                 finish();
             }
         },SPLASH_TIME_OUT);
-    txt= (TextView)findViewById(R.id.textView);
+        txt= (TextView)findViewById(R.id.textView);
 
-    typeface=Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
-    txt.setTypeface(typeface);
+        typeface=Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
+        txt.setTypeface(typeface);
 
     }
 }
-
