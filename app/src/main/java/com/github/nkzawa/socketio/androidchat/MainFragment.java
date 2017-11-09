@@ -251,6 +251,9 @@ public class MainFragment extends Fragment {
         String[] params = {message};
         translatedMessage = new Translator().execute(params).get();
 
+        //workaround on google translate html entity bug
+        if(translatedMessage.contains("&#39;"))
+        translatedMessage = translatedMessage.replaceAll("&#39;","");
 
         mMessages.add(new Message.Builder(Message.TYPE_MESSAGE)
                 .username(username).message(translatedMessage).build());
