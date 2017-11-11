@@ -31,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_header);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
 
+        //This is where I wanna change the username.
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_header);
         TextView tv = (TextView)headerView.findViewById(R.id.username_header);
-        //tv.setText();
+        tv.setText("");
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();

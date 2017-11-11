@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +30,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -39,7 +39,7 @@ import io.socket.emitter.Emitter;
 /**
  * A chat fragment containing messages view and input form.
  */
-public class MainFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener{
+public class MainFragment extends Fragment {
 
     private static final String TAG = "MainFragment";
 
@@ -53,10 +53,10 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
     private RecyclerView.Adapter mAdapter;
     private boolean mTyping = false;
     private Handler mTypingHandler = new Handler();
-    private static String mUsername;
+    private String mUsername;
     private Socket mSocket;
 
-    private NavigationView mNavigationView;
+    private String translatedMessage;
 
     private Boolean isConnected = true;
 
@@ -64,7 +64,8 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
         super();
     }
 
-    // This event fires 1rst, before creation of fragment or any views
+
+    // This event fires 1st, before creation of fragment or any views
     // The onAttach method is called when the Fragment instance is associated with an Activity.
     // This does not mean the Activity is fully initialized.
     @Override
@@ -95,7 +96,6 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
         mSocket.on("typing", onTyping);
         mSocket.on("stop typing", onStopTyping);
         mSocket.connect();
-
 
         startSignIn();
     }
@@ -175,7 +175,6 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
         });
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -187,14 +186,8 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
         mUsername = data.getStringExtra("username");
         int numUsers = data.getIntExtra("numUsers", 1);
 
-        getUsername();
-
         addLog(getResources().getString(R.string.message_welcome));
         addParticipantsLog(numUsers);
-    }
-
-    public static String getUsername(){
-        return mUsername;
     }
 
     @Override
@@ -219,8 +212,6 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
         return super.onOptionsItemSelected(item);
     }
 
-    //Navigation Bar
-    @Override
     public boolean onNavigationItemSelected(MenuItem item){
         //Navigation drawer item clicks here.
         int id = item.getItemId();
@@ -254,9 +245,18 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
         addLog(getResources().getQuantityString(R.plurals.message_participants, numUsers, numUsers));
     }
 
-    private void addMessage(String username, String message) {
+    //This will be where we will add the translation.
+    private void addMessage(String username, String message) throws ExecutionException, InterruptedException {
+        //TODO: add targetLanguage translation code to params array
+        String[] params = {message};
+        translatedMessage = new Translator().execute(params).get();
+
+        //workaround on google translate html entity bug
+        if(translatedMessage.contains("&#39;"))
+            translatedMessage = translatedMessage.replaceAll("&#39;","");
+
         mMessages.add(new Message.Builder(Message.TYPE_MESSAGE)
-                .username(username).message(message).build());
+                .username(username).message(translatedMessage).build());
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();
     }
@@ -291,7 +291,13 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
         }
 
         mInputMessageView.setText("");
-        addMessage(mUsername, message);
+        try {
+            addMessage(mUsername, message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // perform the sending message attempt.
         mSocket.emit("new message", message);
@@ -378,8 +384,27 @@ public class MainFragment extends Fragment implements NavigationView.OnNavigatio
                         return;
                     }
 
+                    String[] params = {message};
+                    //TODO: test and debug using multiple clients; translate after message receive
+                    try {
+                        translatedMessage = new Translator().execute(params).get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
                     removeTyping(username);
-                    addMessage(username, message);
+
+                    try {
+                        addMessage(username, translatedMessage);
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+
                 }
             });
         }
