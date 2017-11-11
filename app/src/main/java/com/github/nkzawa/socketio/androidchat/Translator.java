@@ -6,6 +6,8 @@ import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+
 import java.util.Arrays;
 
 /**
@@ -15,7 +17,13 @@ import java.util.Arrays;
 public class Translator extends AsyncTask<String, Void, String> {
 
     public static final String API_KEY = "AIzaSyCsMGmWKoCkOsDeL-gvZW5cPsGIeIfVNmI";
+    public AsyncTranslatorResponse delegate = null;
 
+    public Translator(){ }
+
+    public Translator(AsyncTranslatorResponse delegate){
+        this.delegate = delegate;
+    }
 
     @Override
     protected String doInBackground(String... messageToBeTranslated) {
@@ -26,7 +34,7 @@ public class Translator extends AsyncTask<String, Void, String> {
             //   https://developers.google.com/resources/api-libraries/documentation/translate/v2/java/latest/
             // on options to set
             TranslateOptions options = TranslateOptions.newBuilder()
-                    .setApiKey("AIzaSyBeoTtgL8y4qWing3w6_Zccj2HGl8nQHhc")
+                    .setApiKey(API_KEY)
                     .build();
 
             com.google.cloud.translate.Translate t = options.getService();
@@ -36,6 +44,10 @@ public class Translator extends AsyncTask<String, Void, String> {
 
             translatedMsg = translation.getTranslatedText();
 
+            //workaround on google translate html entity bug
+            if(translatedMsg.contains("&#39;"))
+                translatedMsg = translatedMsg.replaceAll("&#39;","");
+
 
 
         } catch (Exception e) {
@@ -44,9 +56,9 @@ public class Translator extends AsyncTask<String, Void, String> {
         return translatedMsg;
     }
 
-//    @Override
-//    protected void onPostExecute(String result) {
-//
-//    }
+    @Override
+    protected void onPostExecute(String result) {
+        delegate.onTranslationFinish(result);
+    }
 
 }
