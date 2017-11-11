@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +39,7 @@ import io.socket.emitter.Emitter;
 /**
  * A chat fragment containing messages view and input form.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener{
 
     private static final String TAG = "MainFragment";
 
@@ -52,8 +53,10 @@ public class MainFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private boolean mTyping = false;
     private Handler mTypingHandler = new Handler();
-    private String mUsername;
+    private static String mUsername;
     private Socket mSocket;
+
+    private NavigationView mNavigationView;
 
     private Boolean isConnected = true;
 
@@ -61,8 +64,7 @@ public class MainFragment extends Fragment {
         super();
     }
 
-
-    // This event fires 1st, before creation of fragment or any views
+    // This event fires 1rst, before creation of fragment or any views
     // The onAttach method is called when the Fragment instance is associated with an Activity.
     // This does not mean the Activity is fully initialized.
     @Override
@@ -93,6 +95,7 @@ public class MainFragment extends Fragment {
         mSocket.on("typing", onTyping);
         mSocket.on("stop typing", onStopTyping);
         mSocket.connect();
+
 
         startSignIn();
     }
@@ -172,6 +175,7 @@ public class MainFragment extends Fragment {
         });
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -183,8 +187,14 @@ public class MainFragment extends Fragment {
         mUsername = data.getStringExtra("username");
         int numUsers = data.getIntExtra("numUsers", 1);
 
+        getUsername();
+
         addLog(getResources().getString(R.string.message_welcome));
         addParticipantsLog(numUsers);
+    }
+
+    public static String getUsername(){
+        return mUsername;
     }
 
     @Override
@@ -209,6 +219,8 @@ public class MainFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    //Navigation Bar
+    @Override
     public boolean onNavigationItemSelected(MenuItem item){
         //Navigation drawer item clicks here.
         int id = item.getItemId();
@@ -242,7 +254,6 @@ public class MainFragment extends Fragment {
         addLog(getResources().getQuantityString(R.plurals.message_participants, numUsers, numUsers));
     }
 
-    //This will be where we will add the translation.
     private void addMessage(String username, String message) {
         mMessages.add(new Message.Builder(Message.TYPE_MESSAGE)
                 .username(username).message(message).build());
