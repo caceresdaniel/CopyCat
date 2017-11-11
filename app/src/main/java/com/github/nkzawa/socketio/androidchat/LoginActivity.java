@@ -19,8 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.graphics.Typeface;
 
-import android.content.Context;
-
 /**
  * A login screen that offers login via username.
  */
