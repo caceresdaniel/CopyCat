@@ -122,12 +122,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
         mUsername = username;
 
-        //Sending the username to the MainActivity class as an intent to be
-        //used for the menu
-        Intent menu = new Intent(this, MainActivity.class);
-        menu.putExtra("username", username);
-        startActivity(menu);
-
         // perform the user login attempt.
         mSocket.emit("add user", username);
     }

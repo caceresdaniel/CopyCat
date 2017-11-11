@@ -37,13 +37,6 @@ public class MainActivity extends AppCompatActivity {
         TextView tv = (TextView)headerView.findViewById(R.id.username_header);
 
         String username = "";
-        //grabs the name from the intent that was passed in from the login activity
-        Bundle extras = getIntent().getExtras();
-        if(extras!=null) {
-            if (extras.containsKey("username")) {
-                username = extras.getString("username");
-            }
-        }
         tv.setText(username);
 
         mDrawerLayout.addDrawerListener(mToggle);
