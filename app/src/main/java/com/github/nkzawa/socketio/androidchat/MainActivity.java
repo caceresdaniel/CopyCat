@@ -35,7 +35,16 @@ public class MainActivity extends AppCompatActivity {
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_header);
         TextView tv = (TextView)headerView.findViewById(R.id.username_header);
-        tv.setText("");
+
+        String username = "";
+        //grabs the name from the intent that was passed in from the login activity
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null) {
+            if (extras.containsKey("username")) {
+                username = extras.getString("username");
+            }
+        }
+        tv.setText(username);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
