@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.graphics.Typeface;
 
+import android.content.Context;
 
 /**
  * A login screen that offers login via username.
@@ -123,6 +124,12 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
         mUsername = username;
 
+        //Sending the username to the MainActivity class as an intent to be
+        //used for the menu
+        Intent menu = new Intent(this, MainActivity.class);
+        menu.putExtra("username", username);
+        startActivity(menu);
+
         // perform the user login attempt.
         mSocket.emit("add user", username);
     }
@@ -138,6 +145,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             } catch (JSONException e) {
                 return;
             }
+
 
             Intent intent = new Intent();
             intent.putExtra("username", mUsername);
