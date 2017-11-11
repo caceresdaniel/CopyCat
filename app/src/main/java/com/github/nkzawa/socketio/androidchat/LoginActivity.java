@@ -3,6 +3,7 @@ package com.github.nkzawa.socketio.androidchat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,10 +32,12 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     private CheckBox ageRequirement;
     private boolean metAgeReq;
     private TextView mainTitle;
+    private NavigationView mNavigationView;
 
     private Socket mSocket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -44,8 +47,10 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         mainTitle = (TextView) findViewById(R.id.mainHeader);
         Typeface font = Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
         mainTitle.setTypeface(font);
+
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.username_input);
+
         //Age Requirement
         ageRequirement = (CheckBox)findViewById(R.id.age_confirmation);
 
