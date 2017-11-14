@@ -1,9 +1,7 @@
 package com.github.nkzawa.socketio.androidchat;
 
-<<<<<<< HEAD
-=======
-import android.app.Activity;
->>>>>>> a80082b9ea001778202eb9f84ddd252c3e2ca936
+
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
