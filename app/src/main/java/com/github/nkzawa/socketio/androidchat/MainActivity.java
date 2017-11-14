@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolBar;
-    private TextView tv;
+    private TextView usernameTV;
 
     protected String mUsername;
 
@@ -37,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_header);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
 
-        //This is where I wanna change the username.
+        //instantiate NavigationView
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_header);
-        tv = (TextView)headerView.findViewById(R.id.username_header);
+
+        //instantiate TextView to display username on navigation bar
+        usernameTV = (TextView)headerView.findViewById(R.id.username_header);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         mUsername = data.getStringExtra("username");
-        tv.setText(mUsername);
+        usernameTV.setText(mUsername);
     }
 }
 
