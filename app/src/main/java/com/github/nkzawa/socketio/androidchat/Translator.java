@@ -31,11 +31,10 @@ public class Translator extends AsyncTask<String, Void, String> {
 
             com.google.cloud.translate.Translate t = options.getService();
 
-            Translation translation =  t.translate(messageToBeTranslated[0],
+            Translation translation = t.translate(messageToBeTranslated[0],
                     com.google.cloud.translate.Translate.TranslateOption.targetLanguage("it")); //TODO: add targetLanguage code to param array
 
             translatedMsg = translation.getTranslatedText();
-
 
 
         } catch (Exception e) {
@@ -43,10 +42,5 @@ public class Translator extends AsyncTask<String, Void, String> {
         }
         return translatedMsg;
     }
-
-//    @Override
-//    protected void onPostExecute(String result) {
-//
-//    }
 
 }

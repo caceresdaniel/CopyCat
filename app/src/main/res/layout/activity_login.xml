@@ -60,6 +60,17 @@
             android:maxLines="1"
             android:singleLine="true" />
 
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/languages"
+            android:id ="@+id/language_spinner"
+            android:layout_gravity="center_horizontal"
+            android:padding=" 20dp">
+
+          </Spinner>
+
         <CheckBox
             android:id="@+id/age_confirmation"
             android:layout_width="wrap_content"
@@ -80,7 +91,9 @@
             android:layout_marginTop="16dp"
             android:elevation="0dp"
             android:text="@string/action_sign_in"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:background="@color/grey1"
+            />
 
     </LinearLayout>
 </ScrollView>
