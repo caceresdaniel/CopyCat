@@ -1,5 +1,7 @@
 package com.github.nkzawa.socketio.androidchat;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolBar;
+    private TextView tv;
+
+    protected String mUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //This is where I wanna change the username.
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_header);
-        TextView tv = (TextView)headerView.findViewById(R.id.username_header);
-        tv.setText("");
+        tv = (TextView)headerView.findViewById(R.id.username_header);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -51,5 +55,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //update username TextView in navigation bar on LoginActivity Result; activity is started in mainFragment
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        mUsername = data.getStringExtra("username");
+        tv.setText(mUsername);
+    }
 }
 

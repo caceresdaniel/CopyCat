@@ -56,7 +56,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     private String mUsername;
     private Socket mSocket;
     private String senderUsername;
-    private String translatedMessage;
+    private int numUsers;
 
     private Boolean isConnected = true;
 
@@ -97,7 +97,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         mSocket.on("stop typing", onStopTyping);
         mSocket.connect();
 
-        startSignIn();
+      startSignIn();
     }
 
     @Override
@@ -184,7 +184,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         }
 
         mUsername = data.getStringExtra("username");
-        int numUsers = data.getIntExtra("numUsers", 1);
+        numUsers = data.getIntExtra("numUsers", 1);
 
         addLog(getResources().getString(R.string.message_welcome));
         addParticipantsLog(numUsers);
@@ -309,7 +309,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
     private void startSignIn() {
         mUsername = null;
+        ((MainActivity)getActivity()).mUsername = null; //for safety set MainActivity mUsername to null
         Intent intent = new Intent(getActivity(), LoginActivity.class);
+
         startActivityForResult(intent, REQUEST_LOGIN);
     }
 
@@ -407,17 +409,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-
-//                    try {
-//                        addMessage(username, message);
-//                    } catch (ExecutionException e) {
-//                        e.printStackTrace();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-
-
                 }
             });
         }
