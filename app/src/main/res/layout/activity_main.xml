@@ -15,11 +15,11 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
     </android.support.v7.widget.Toolbar>
 
-    <RelativeLayout
+    <LinearView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fragment_container">
-    </RelativeLayout>
+    </LinearView>
 
     <android.support.design.widget.NavigationView
         android:layout_height="match_parent"
