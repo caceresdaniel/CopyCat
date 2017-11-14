@@ -7,8 +7,8 @@
     android:orientation="vertical"
     tools:context=".MainFragment">
 
-    <include layout="@layout/navigation_action" android:layout_width="match_parent"
-    android:layout_height="wrap_content"></include>
+    <include android:id="@id/nav_act" android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/messages"

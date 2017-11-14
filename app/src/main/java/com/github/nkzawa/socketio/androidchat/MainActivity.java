@@ -1,19 +1,16 @@
 package com.github.nkzawa.socketio.androidchat;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -44,6 +41,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        MainFragment firstFragment = new MainFragment();
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment_container, firstFragment);
+        ft.commit();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -59,18 +62,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment fragment = null;
         switch(id){
             case R.id.account:
-                Toast.makeText(this,"Camera", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Account", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewUsers:
+                Toast.makeText(this,"Users", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.settings:
+                fragment = new Settings();
+                Toast.makeText(this,"Settings", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tsettings:
-                fragment = new SelectLanguage();
+                fragment = new SelectLanguageFragment();
+                Toast.makeText(this,"Translatiaon Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         if(fragment != null){
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.commit();
         }

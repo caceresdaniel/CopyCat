@@ -7,11 +7,19 @@
     tools:context=".MainActivity"
     tools:ignore="MergeRootFrame">
 
-    <fragment
-        class="com.github.nkzawa.socketio.androidchat.MainFragment"
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nav_act"
+        android:background="@color/grey2"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/container"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_container">
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_height="match_parent"

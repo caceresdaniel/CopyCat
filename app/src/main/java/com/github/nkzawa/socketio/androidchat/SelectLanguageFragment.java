@@ -1,32 +1,27 @@
 package com.github.nkzawa.socketio.androidchat;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class SelectLanguage extends Fragment {
+public class SelectLanguageFragment extends Fragment {
     ListView listView;
     private ArrayAdapter<String> adapter;
     //search edittext
     EditText search;
 
-    public SelectLanguage() {
+    public SelectLanguageFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_languages, container, false);
+        View view = inflater.inflate(R.layout.fragment_languages, container, false);
 
         ListView listView = (ListView) view.findViewById(R.id.languagelist);
 
@@ -42,12 +37,12 @@ public class SelectLanguage extends Fragment {
 
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_languages);
+//        setContentView(R.layout.fragment_languages);
 //
 //        listView = (ListView) findViewById(R.id.languagelist);
 //        search = (EditText) findViewById(R.id.searchtxt);
 //
-//        adapter = new ArrayAdapter<String>(SelectLanguage.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
+//        adapter = new ArrayAdapter<String>(SelectLanguageFragment.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
 //        listView.setAdapter(adapter);
 //
 //        //Search bar for languages
@@ -59,7 +54,7 @@ public class SelectLanguage extends Fragment {
 //
 //            @Override
 //            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                SelectLanguage.this.adapter.getFilter().filter(s);
+//                SelectLanguageFragment.this.adapter.getFilter().filter(s);
 //            }
 //
 //            @Override
@@ -72,9 +67,9 @@ public class SelectLanguage extends Fragment {
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                //new activity after the SelectLanguage ListView gets clicked
-//                Intent intent = new Intent(SelectLanguage.this, MainActivity.class);
-//                intent.putExtra("SelectLanguage",listView.getItemAtPosition(position).toString());
+//                //new activity after the SelectLanguageFragment ListView gets clicked
+//                Intent intent = new Intent(SelectLanguageFragment.this, MainActivity.class);
+//                intent.putExtra("SelectLanguageFragment",listView.getItemAtPosition(position).toString());
 //                startActivity(intent);
 //            }
 //        });
