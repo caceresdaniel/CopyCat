@@ -1,6 +1,7 @@
 package com.github.nkzawa.socketio.androidchat;
 
         import android.os.AsyncTask;
+        import android.widget.Spinner;
 
         import com.google.cloud.translate.Translate;
         import com.google.cloud.translate.TranslateOptions;
@@ -8,18 +9,25 @@ package com.github.nkzawa.socketio.androidchat;
 
         import java.util.Arrays;
 
+        import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
+
 /**
  * Created by marco on 10/30/2017.
+ * edited by stephanie
  */
 
 public class Translator extends AsyncTask<String, Void, String> {
 
     public static final String API_KEY = "AIzaSyCsMGmWKoCkOsDeL-gvZW5cPsGIeIfVNmI";
+    String selectedlanguage;
+    Spinner spinner;
 
     @Override
     protected String doInBackground(String... messageToBeTranslated) {
         String translatedMsg = null;
         // Do some background work
+
+
         try {
             // See comments on
             //   https://developers.google.com/resources/api-libraries/documentation/translate/v2/java/latest/
@@ -30,8 +38,14 @@ public class Translator extends AsyncTask<String, Void, String> {
 
             com.google.cloud.translate.Translate t = options.getService();
 
+
+            //
+
+
             Translation translation = t.translate(messageToBeTranslated[0],
                     com.google.cloud.translate.Translate.TranslateOption.targetLanguage("it"));
+
+
             //TODO: add targetLanguage code to param array
 
             translatedMsg = translation.getTranslatedText();
@@ -42,5 +56,6 @@ public class Translator extends AsyncTask<String, Void, String> {
         }
         return translatedMsg;
     }
+
 
 }

@@ -99,9 +99,10 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 //spinner.setOnItemSelectedListener(this);
-                // selectedlanguage = spinner.getItemAtPosition(position).toString();
                 textview.setText("Language Selected: " );
               //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
+                selectedlanguage =  spinner.getItemAtPosition(position).toString();
+
 
 
             }
@@ -112,8 +113,8 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
             }
 
-
-        });
+        }
+    );
 
 /*
  <AutoCompleteTextView
