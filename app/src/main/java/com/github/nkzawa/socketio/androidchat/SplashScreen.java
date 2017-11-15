@@ -27,10 +27,8 @@ public class SplashScreen extends AppCompatActivity
                 finish();
             }
         },SPLASH_TIME_OUT);
-        txt = (TextView)findViewById(R.id.textView);
 
         typeface=Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
-        txt.setTypeface(typeface);
 
     }
 }

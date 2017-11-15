@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolBar;
+    private TextView usernameTV;
+
+    protected String mUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +42,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
+        //instantiate NavigationView
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_header);
+
+        //instantiate TextView to display username on navigation bar
+        usernameTV = (TextView)headerView.findViewById(R.id.username_header);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        MainFragment firstFragment = new MainFragment();
-
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragment_container, firstFragment);
-        ft.commit();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -94,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         displaySelectedScreen(id);
         return true;
     }
+
+
 
 }
 
