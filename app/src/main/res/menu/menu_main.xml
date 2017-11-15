@@ -6,4 +6,5 @@
           android:title="@string/action_leave"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+
 </menu>

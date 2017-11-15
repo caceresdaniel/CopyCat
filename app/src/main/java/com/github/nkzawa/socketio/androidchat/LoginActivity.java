@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import android.graphics.Typeface;
 
 import static com.github.nkzawa.socketio.androidchat.R.array.languages;
 import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
+import static com.github.nkzawa.socketio.androidchat.R.id.text;
 
 
 /**
@@ -41,7 +43,11 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     private TextView mainTitle;
     private Spinner spinner;
     private Socket mSocket;
+    private TextView textview;
 
+    private String selectedlanguage;
+
+    ArrayAdapter<CharSequence> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,13 +83,37 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 attemptLogin();
             }
         });
-        //adapter to langauge list
-         spinner = (Spinner) findViewById(language_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, languages,android.R.layout.simple_spinner_item);
-        //specifying layout for dropdown
+
+    //Txt indicating what language was selected
+        textview= (TextView)findViewById(R.id.textoflanguage);
+                //adapter to langauge list
+        spinner = (Spinner) findViewById(language_spinner);
+        adapter = ArrayAdapter.createFromResource(this, languages,android.R.layout.simple_spinner_item);
+                //specifying layout for dropdown
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                //spinner.setOnItemSelectedListener(this);
+                // selectedlanguage = spinner.getItemAtPosition(position).toString();
+                textview.setText("Language Selected: " );
+              //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+
+
+        });
 
 /*
  <AutoCompleteTextView
@@ -92,12 +122,9 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             android:layout_height="wrap_content"ste
             android:hint="@string/searchlanguage"
             android:padding="10dp"
-
             />
              AutoCompleteTextView choose =(AutoCompleteTextView)findViewById(R.id.searchtxt);
         choose.setAdapter(adapter);
-
-
  */
 
 
