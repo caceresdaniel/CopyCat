@@ -117,23 +117,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                                           }
         );
 
-/*
- <AutoCompleteTextView
-            android:id="@+id/searchtxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"ste
-            android:hint="@string/searchlanguage"
-            android:padding="10dp"
-            />
-             AutoCompleteTextView choose =(AutoCompleteTextView)findViewById(R.id.searchtxt);
-        choose.setAdapter(adapter);
- */
-
-
-
-
-
-
         mSocket.on("login", onLogin);
     }
 

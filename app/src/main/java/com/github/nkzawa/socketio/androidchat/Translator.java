@@ -59,6 +59,7 @@ public class Translator extends AsyncTask<String, Void, String> {
         return translatedMsg;
     }
 
+    //delegate result to UI thread on MainFragment
     @Override
     protected void onPostExecute(String result) {
         delegate.onTranslationFinish(result);
