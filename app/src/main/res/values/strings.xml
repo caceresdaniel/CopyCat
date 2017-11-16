@@ -12,9 +12,8 @@
 
 
     <!--languages-->
-    <string name ="languagequestion">Pick a Language to read in...</string>
+    <string name="languagequestion">Pick a Language to read in...</string>
     <string name="searchlanguage">Search Language</string>
-
 
 
     <string name="connect">Connected</string>
@@ -38,6 +37,18 @@
     <string name="navi_viewUser">View Users</string>
     <string name="navi_settings">Account Settings</string>
     <string name="navi_tSettings">Translation Settings</string>
+    <string name="title_activity_tools">Tools</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
 
 
 </resources>

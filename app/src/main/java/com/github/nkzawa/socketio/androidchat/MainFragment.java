@@ -27,7 +27,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,7 @@ import io.socket.emitter.Emitter;
 /**
  * A chat fragment containing messages view and input form.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
     private static final String TAG = "MainFragment";
 
@@ -56,8 +55,9 @@ public class MainFragment extends Fragment {
     private Handler mTypingHandler = new Handler();
     private String mUsername;
     private Socket mSocket;
-
-    private String translatedMessage;
+    private String senderUsername;
+    private int numUsers;
+    private String targetLanguageCode;
 
     private Boolean isConnected = true;
 
@@ -185,7 +185,8 @@ public class MainFragment extends Fragment {
         }
 
         mUsername = data.getStringExtra("username");
-        int numUsers = data.getIntExtra("numUsers", 1);
+        numUsers = data.getIntExtra("numUsers", 1);
+        targetLanguageCode = data.getStringExtra("targetLanguage");
 
         addLog(getResources().getString(R.string.message_welcome));
         addParticipantsLog(numUsers);
@@ -216,7 +217,6 @@ public class MainFragment extends Fragment {
     public boolean onNavigationItemSelected(MenuItem item){
         //Navigation drawer item clicks here.
         int id = item.getItemId();
-       // int username= R.id.username_input;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.account) {
@@ -247,21 +247,25 @@ public class MainFragment extends Fragment {
         addLog(getResources().getQuantityString(R.plurals.message_participants, numUsers, numUsers));
     }
 
+
     //This will be where we will add the translation.
     private void addMessage(String username, String message) throws ExecutionException, InterruptedException {
         //TODO: add targetLanguage translation code to params array
-        String[] params = {message};
-        translatedMessage = new Translator().execute(params).get();
+        senderUsername = username;
+        String[] params = {message, targetLanguageCode};
+        new Translator(this).execute(params);
+    }
 
-        //workaround on google translate html entity bug
-        if(translatedMessage.contains("&#39;"))
-            translatedMessage = translatedMessage.replaceAll("&#39;","");
-
+    @Override
+    public void onTranslationFinish(String translatedMsg) {
+        //update UI
         mMessages.add(new Message.Builder(Message.TYPE_MESSAGE)
-                .username(username).message(translatedMessage).build());
+                .username(senderUsername).message(translatedMsg).build());
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();
     }
+
+
 
     private void addTyping(String username) {
         mMessages.add(new Message.Builder(Message.TYPE_ACTION)
@@ -307,7 +311,10 @@ public class MainFragment extends Fragment {
 
     private void startSignIn() {
         mUsername = null;
+        ((MainActivity)getActivity()).mUsername = null;
+        //for safety set MainActivity mUsername to null
         Intent intent = new Intent(getActivity(), LoginActivity.class);
+
         startActivityForResult(intent, REQUEST_LOGIN);
     }
 
@@ -386,27 +393,25 @@ public class MainFragment extends Fragment {
                         return;
                     }
 
-                    String[] params = {message};
+                    //                String[] params = {message};
                     //TODO: test and debug using multiple clients; translate after message receive
-                    try {
-                        translatedMessage = new Translator().execute(params).get();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        translatedMessage = new Translator().execute(params).get();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    } catch (ExecutionException e) {
+//                        e.printStackTrace();
+//                    }
 
                     removeTyping(username);
 
                     try {
-                        addMessage(username, translatedMessage);
+                        addMessage(username, message);
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-
                 }
             });
         }
@@ -510,4 +515,8 @@ public class MainFragment extends Fragment {
             mSocket.emit("stop typing");
         }
     };
+
+
+
+
 }

@@ -39,7 +39,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     private TextView mainTitle;
     private Spinner spinner;
     private Socket mSocket;
-    private TextView textview;
+    private TextView languageTextView;
 
     private String selectedlanguage;
 
@@ -83,7 +83,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
 
       //Txt indicating what language was selected
-        textview = (TextView) findViewById(R.id.textoflanguage);
+       languageTextView = (TextView) findViewById(R.id.textoflanguage);
       //adapter to langauge list
         spinner = (Spinner) findViewById(language_spinner);
         adapter = ArrayAdapter.createFromResource(this, languages, android.R.layout.simple_spinner_item);
@@ -97,7 +97,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
           {
               //spinner.setOnItemSelectedListener(this);
-              textview.setText("Language Selected: ");
+              languageTextView.setText("Select a Language: ");
               //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
               selectedlanguage = spinner.getItemAtPosition(position).toString();
 
@@ -111,19 +111,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         });
 
 
-
-
-/*
- <AutoCompleteTextView
-            android:id="@+id/searchtxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"ste
-            android:hint="@string/searchlanguage"
-            android:padding="10dp"
-            />
-             AutoCompleteTextView choose =(AutoCompleteTextView)findViewById(R.id.searchtxt);
-        choose.setAdapter(adapter);
- */
 
 
         mSocket.on("login", onLogin);

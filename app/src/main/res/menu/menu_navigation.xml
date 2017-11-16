@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/account"
         android:title="@string/navi_acc"
-        android:icon="@drawable/ic_account_circle_black_24dp"></item>
+        android:icon="@drawable/ic_account_circle_black_24dp">
+
+    </item>
     <item
         android:id="@+id/viewUsers"
         android:title="@string/navi_viewUser"
-        android:icon="@drawable/ic_group_black_24dp"></item>
+        android:icon="@drawable/ic_group_black_24dp">
+
+    </item>
     <item
         android:id="@+id/settings"
         android:title="@string/navi_settings"
-        android:icon="@drawable/ic_settings_black_24dp"></item>
+        android:icon="@drawable/ic_settings_black_24dp">
+
+    </item>
     <item
         android:id="@+id/tsettings"
         android:title="@string/navi_tSettings"
-        android:icon="@drawable/ic_translate_black_24dp"></item>
+        android:icon="@drawable/ic_translate_black_24dp">
+
+    </item>
 </menu>
