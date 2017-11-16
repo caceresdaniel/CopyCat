@@ -100,7 +100,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                                               public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                                               {
                                                   //spinner.setOnItemSelectedListener(this);
-                                                  languageTextView.setText("Language Selected: " );
+                                                  languageTextView.setText("Select a Language: " );
                                                   //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
                                                   selectedlanguage =  spinner.getItemAtPosition(position).toString();
 

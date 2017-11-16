@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         //instantiate NavigationView
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_header);
+        View headerView = mNavigationView.getHeaderView(0);
 
         //instantiate TextView to display username on navigation bar
         usernameTV = (TextView)headerView.findViewById(R.id.username_header);
