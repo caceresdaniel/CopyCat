@@ -3,16 +3,13 @@ package com.github.nkzawa.socketio.androidchat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,7 +23,6 @@ import android.graphics.Typeface;
 
 import static com.github.nkzawa.socketio.androidchat.R.array.languages;
 import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
-import static com.github.nkzawa.socketio.androidchat.R.id.text;
 
 
 /**
@@ -48,6 +44,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     private String selectedlanguage;
 
     ArrayAdapter<CharSequence> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,37 +81,37 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             }
         });
 
-    //Txt indicating what language was selected
-        textview= (TextView)findViewById(R.id.textoflanguage);
-                //adapter to langauge list
+
+      //Txt indicating what language was selected
+        textview = (TextView) findViewById(R.id.textoflanguage);
+      //adapter to langauge list
         spinner = (Spinner) findViewById(language_spinner);
-        adapter = ArrayAdapter.createFromResource(this, languages,android.R.layout.simple_spinner_item);
-                //specifying layout for dropdown
+        adapter = ArrayAdapter.createFromResource(this, languages, android.R.layout.simple_spinner_item);
+      //specifying layout for dropdown
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                //spinner.setOnItemSelectedListener(this);
-                textview.setText("Language Selected: " );
+
+      spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+          {
+              //spinner.setOnItemSelectedListener(this);
+              textview.setText("Language Selected: ");
               //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
-                selectedlanguage =  spinner.getItemAtPosition(position).toString();
+              selectedlanguage = spinner.getItemAtPosition(position).toString();
+
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent)
+          {
+
+          }
+        });
 
 
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
-
-            }
-
-        }
-    );
 
 /*
  <AutoCompleteTextView

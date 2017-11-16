@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -215,6 +216,7 @@ public class MainFragment extends Fragment {
     public boolean onNavigationItemSelected(MenuItem item){
         //Navigation drawer item clicks here.
         int id = item.getItemId();
+       // int username= R.id.username_input;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.account) {

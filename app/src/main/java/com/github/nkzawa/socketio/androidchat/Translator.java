@@ -6,10 +6,9 @@ package com.github.nkzawa.socketio.androidchat;
         import com.google.cloud.translate.Translate;
         import com.google.cloud.translate.TranslateOptions;
         import com.google.cloud.translate.Translation;
-
         import java.util.Arrays;
+import com.github.nkzawa.socketio.androidchat.LoginActivity;
 
-        import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
 
 /**
  * Created by marco on 10/30/2017.
@@ -37,9 +36,6 @@ public class Translator extends AsyncTask<String, Void, String> {
                     .build();
 
             com.google.cloud.translate.Translate t = options.getService();
-
-
-            //
 
 
             Translation translation = t.translate(messageToBeTranslated[0],
