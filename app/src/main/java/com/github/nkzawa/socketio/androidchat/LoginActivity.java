@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +19,9 @@ import io.socket.emitter.Emitter;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.graphics.Typeface;
+import android.widget.Toast;
 
+import static android.widget.AdapterView.*;
 import static com.github.nkzawa.socketio.androidchat.R.array.languages;
 import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
 
@@ -76,15 +78,34 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         });
         //adapter to langauge list
         spinner = (Spinner) findViewById(language_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, languages,android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, languages,android.R.layout.simple_spinner_item);
         //specifying layout for dropdown
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Try to get the item "String" from the array adapter and make it a string so that it displays the name of the item selected
+                //languageCode = adapter.getItem(position).toString();
+                //System.out.println("LANGUAGE CODE = " + languageCode);
+                //Translator t = new Translator(returnString());
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
         mSocket.on("login", onLogin);
     }
+//
+//    public String returnString(){
+//        languageCode = languageCode.substring(languageCode.indexOf("(") + 1);
+//        languageCode = languageCode.substring(0, languageCode.indexOf(")"));
+//        //languageCode = adapter.getItem(position).toString();
+//        return languageCode;
+//    }
 
     //Checkbox for age Requirement
     public void onClick(View view){
