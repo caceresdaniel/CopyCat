@@ -217,6 +217,7 @@ public class LanguageCodeParser {
             case "Zulu":
                 return "zu";
         }
+        //if no corresponding languageCode is found:
        return null;
     }
 }

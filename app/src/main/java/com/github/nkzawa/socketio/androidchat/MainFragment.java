@@ -250,7 +250,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
     //This will be where we will add the translation.
     private void addMessage(String username, String message) throws ExecutionException, InterruptedException {
-        //TODO: add targetLanguage translation code to params array
         senderUsername = username;
         String[] params = {message, targetLanguageCode};
         new Translator(this).execute(params);
