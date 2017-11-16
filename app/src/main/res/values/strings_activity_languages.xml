@@ -2,7 +2,7 @@
 <resources>
     <string name ="languages">Language</string>
     <string-array name="languages">
-        <item>Afrikaans (it)</item>
+        <item>Afrikaans</item>
         <item>Albanian</item>
         <item>Amharic</item>
         <item>Arabic</item>
