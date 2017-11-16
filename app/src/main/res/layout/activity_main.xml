@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    tools:ignore="MergeRootFrame">
+    tools:ignore="MergeRootFrame"
+    tools:openDrawer="start"
+    android:fitsSystemWindows="true">
 
     <fragment
         class="com.github.nkzawa.socketio.androidchat.MainFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
         android:layout_height="match_parent"

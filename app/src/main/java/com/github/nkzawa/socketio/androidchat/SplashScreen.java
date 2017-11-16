@@ -12,7 +12,6 @@ import android.widget.TextView;
 public class SplashScreen extends AppCompatActivity
 {
     TextView txt;
-    Button clk;
     Typeface typeface;
     private static int SPLASH_TIME_OUT= 5000;
     @Override
@@ -27,8 +26,8 @@ public class SplashScreen extends AppCompatActivity
                 finish();
             }
         },SPLASH_TIME_OUT);
-
+        txt= (TextView)findViewById(R.id.textView);
         typeface=Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
-
+        txt.setTypeface(typeface);
     }
 }

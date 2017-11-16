@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".MainFragment">
 
-    <include layout="@layout/navigation_action"/>
+    <include layout="@layout/navigation_toolbar"></include>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/messages"
