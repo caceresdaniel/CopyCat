@@ -31,7 +31,6 @@ import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
 public class LoginActivity extends Activity implements View.OnClickListener{
 
     private EditText mUsernameView;
-
     private String mUsername;
 
     private CheckBox ageRequirement;
@@ -177,7 +176,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             } catch (JSONException e) {
                 return;
             }
-
 
             Intent intent = new Intent();
             intent.putExtra("username", mUsername);
