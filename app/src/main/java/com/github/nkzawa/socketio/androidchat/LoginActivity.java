@@ -40,7 +40,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     private NavigationView mNavigationView;
 
     private String selectedlanguage;
-    private TextView textview;
+    private TextView languageTextView;
     private Spinner spinner;
 
     ArrayAdapter<CharSequence> adapter;
@@ -86,7 +86,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         });
 
         //Txt indicating what language was selected
-        textview= (TextView)findViewById(R.id.textoflanguage);
+        languageTextView = (TextView)findViewById(R.id.textoflanguage);
         //adapter to langauge list
         spinner = (Spinner) findViewById(language_spinner);
         adapter = ArrayAdapter.createFromResource(this, languages,android.R.layout.simple_spinner_item);
@@ -100,7 +100,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                                               public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                                               {
                                                   //spinner.setOnItemSelectedListener(this);
-                                                  textview.setText("Language Selected: " );
+                                                  languageTextView.setText("Language Selected: " );
                                                   //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
                                                   selectedlanguage =  spinner.getItemAtPosition(position).toString();
 
@@ -206,6 +206,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             Intent intent = new Intent();
             intent.putExtra("username", mUsername);
             intent.putExtra("numUsers", numUsers);
+            intent.putExtra("targetLanguage", selectedlanguage);
             setResult(RESULT_OK, intent);
             finish();
         }

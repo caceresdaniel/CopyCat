@@ -26,7 +26,7 @@ public class Translator extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... messageToBeTranslated) {
+    protected String doInBackground(String... messageToBeTranslatedParams) {
         String translatedMsg = null;
         // Do some background work
         try {
@@ -39,8 +39,11 @@ public class Translator extends AsyncTask<String, Void, String> {
 
             com.google.cloud.translate.Translate t = options.getService();
 
-            Translation translation =  t.translate(messageToBeTranslated[0],
-                    com.google.cloud.translate.Translate.TranslateOption.targetLanguage("it")); //TODO: add targetLanguage code to param array
+            //request google to translate
+            //parse language String to languageCode
+            Translation translation =  t.translate(messageToBeTranslatedParams[0],
+                    com.google.cloud.translate.Translate.TranslateOption.targetLanguage(
+                            LanguageCodeParser.getLanguageCode(messageToBeTranslatedParams[1])));
 
             translatedMsg = translation.getTranslatedText();
 

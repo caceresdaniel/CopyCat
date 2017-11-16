@@ -57,6 +57,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     private Socket mSocket;
     private String senderUsername;
     private int numUsers;
+    private String targetLanguageCode;
 
     private Boolean isConnected = true;
 
@@ -185,6 +186,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         mUsername = data.getStringExtra("username");
         numUsers = data.getIntExtra("numUsers", 1);
+        targetLanguageCode = data.getStringExtra("targetLanguage");
 
         addLog(getResources().getString(R.string.message_welcome));
         addParticipantsLog(numUsers);
@@ -250,7 +252,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     private void addMessage(String username, String message) throws ExecutionException, InterruptedException {
         //TODO: add targetLanguage translation code to params array
         senderUsername = username;
-        String[] params = {message};
+        String[] params = {message, targetLanguageCode};
         new Translator(this).execute(params);
     }
 
