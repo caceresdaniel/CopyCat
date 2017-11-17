@@ -1,4 +1,4 @@
-package com.github.nkzawa.socketio.androidchat;
+package com.copycat;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,8 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.graphics.Typeface;
 
-import static com.github.nkzawa.socketio.androidchat.R.array.languages;
-import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
+import com.copycat.R;
+
+import static com.copycat.R.array.languages;
+import static com.copycat.R.id.language_spinner;
 
 /**
  * A login screen that offers login via username.
@@ -94,29 +96,30 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                                          {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
                                               @Override
                                               public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                                               {
                                                   //spinner.setOnItemSelectedListener(this);
-                                                  languageTextView.setText("Select a Language: " );
-                                                  //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
+                                                  // textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
                                                   selectedlanguage =  spinner.getItemAtPosition(position).toString();
-
-
-
                                               }
-
                                               @Override
-                                              public void onNothingSelected(AdapterView<?> parent)
-                                              {
-
-                                              }
-
+                                              public void onNothingSelected(AdapterView<?> parent) {}
                                           }
         );
 
+/*
+ <AutoCompleteTextView
+            android:id="@+id/searchtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"ste
+            android:hint="@string/searchlanguage"
+            android:padding="10dp"
+            />
+             AutoCompleteTextView choose =(AutoCompleteTextView)findViewById(R.id.searchtxt);
+        choose.setAdapter(adapter);
+ */
         mSocket.on("login", onLogin);
     }
 

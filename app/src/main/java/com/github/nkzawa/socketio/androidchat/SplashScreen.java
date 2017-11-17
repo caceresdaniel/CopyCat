@@ -11,23 +11,22 @@ import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity
 {
-    TextView txt;
-    Typeface typeface;
-    ImageView copycat;
+    TextView splashTitleText;
+    Typeface typefaceForSplashTitleText;
+    ImageView copycatImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-//SplashScreen animation rotation and Intent to next (MainActivity)
-        copycat= (ImageView)findViewById(R.id.imageView);
+        //SplashScreen animation rotation and Intent to next (MainActivity)
+        copycatImage = (ImageView)findViewById(R.id.imageView);
         final Animation animation= AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate_image);
-        copycat.startAnimation(animation);
+        copycatImage.startAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener()
-           {
+        {
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
 
             @Override
@@ -35,7 +34,6 @@ public class SplashScreen extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 finish();
-
             }
 
             @Override
@@ -44,10 +42,10 @@ public class SplashScreen extends AppCompatActivity
             }
         });
 
-        //Splashscreen Font COPYCAT
-        txt= (TextView)findViewById(R.id.textView);
-        typeface=Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
-        txt.setTypeface(typeface);
+        //SplashScreen Font COPYCAT
+        splashTitleText = (TextView)findViewById(R.id.textView);
+        typefaceForSplashTitleText = Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
+        splashTitleText.setTypeface(typefaceForSplashTitleText);
     }
 
 }
