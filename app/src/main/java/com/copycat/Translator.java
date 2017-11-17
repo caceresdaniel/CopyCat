@@ -1,14 +1,9 @@
-package com.github.nkzawa.socketio.androidchat;
+package com.copycat;
 
 import android.os.AsyncTask;
 
-import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
-
-import org.codehaus.jackson.annotate.JsonTypeInfo;
-
-import java.util.Arrays;
 
 /**
  * Created by marco on 10/30/2017.

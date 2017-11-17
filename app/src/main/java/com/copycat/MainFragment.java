@@ -1,4 +1,4 @@
-package com.github.nkzawa.socketio.androidchat;
+package com.copycat;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,6 +24,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.copycat.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.github.nkzawa.socketio.androidchat;
+package com.copycat;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

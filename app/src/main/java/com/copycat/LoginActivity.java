@@ -1,4 +1,4 @@
-package com.github.nkzawa.socketio.androidchat;
+package com.copycat;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,8 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.graphics.Typeface;
 
-import static com.github.nkzawa.socketio.androidchat.R.array.languages;
-import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
+import com.copycat.R;
+
+import static com.copycat.R.array.languages;
+import static com.copycat.R.id.language_spinner;
 
 /**
  * A login screen that offers login via username.

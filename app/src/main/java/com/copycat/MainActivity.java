@@ -1,4 +1,4 @@
-package com.github.nkzawa.socketio.androidchat;
+package com.copycat;
 
 
 
@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.copycat.R;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
