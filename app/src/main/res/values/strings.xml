@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--SplashScreen-->
-    <string name="copycat_splash">COPYCAT</string>
-    <!--Login-->
+
     <string name="app_name">CopyCat</string>
+    <string name="copycat_splash">COPYCAT</string>
 
     <string name="action_leave">Leave</string>
     <string name="action_send">Send</string>
     <string name="prompt_message">Message</string>
     <string name="age_requirement">I am atleast 13 years old.</string>
-
-
-    <!--languages-->
-    <string name="languagequestion">Pick a Language to read in...</string>
-    <string name="searchlanguage">Search Language</string>
-
 
     <string name="connect">Connected</string>
     <string name="disconnect">Disconnected, Please check your internet connection</string>
@@ -34,29 +27,7 @@
     <string name="navi_acc">Account</string>
     <string name="navi_viewUser">View Users</string>
     <string name="navi_settings">Account Settings</string>
-    <string name="navi_tSettings">Translation Settings</string>
+    <string name="Info">Info</string>
     <string name="title_activity_test">TestActivity</string>
-
-
-    <!--nagivation bar-->
-    <string name="open">Open</string>
-    <string name="close">Close</string>
-    <string name="navi_acc">Account</string>
-    <string name="navi_viewUser">View Users</string>
-    <string name="navi_settings">Account Settings</string>
-    <string name="navi_tSettings">Translation Settings</string>
-    <string name="title_activity_tools">Tools</string>
-
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_example">Example action</string>
-
-    <string name="action_settings">Settings</string>
-
 
 </resources>

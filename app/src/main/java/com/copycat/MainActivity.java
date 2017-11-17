@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.settings:
                 Toast.makeText(this, "done", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.information:
+            case R.id.info:
                 Toast.makeText(this, "with myself", Toast.LENGTH_LONG).show();
                 break;
         }

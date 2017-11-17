@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="username0">#e21400</color>
     <color name="username1">#91580f</color>
     <color name="username2">#f8a700</color>
@@ -21,11 +22,4 @@
     <color name="weakGrey">#8d8d8d</color>
     <color name="buttonGrey">#444444</color>
 
-    <color name="black">#000000</color>
-    <color name="white">#ffffff</color>
-
-    <!-- Colors for the layout -->
-    <color name="grey1">#5a595b</color>
-    <color name="grey2">#303030</color>
-    <color name="fontGrey">#efefef</color>
 </resources>

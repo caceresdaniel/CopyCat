@@ -28,11 +28,6 @@
         android:layout_height="250dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
-        android:layout_marginTop="123dp"
-        app:srcCompat="@drawable/ff" />
-=======
         android:layout_marginTop="127dp"
         app:srcCompat="@drawable/logo1" />
->>>>>>> master
 </RelativeLayout>

@@ -71,14 +71,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     // This event fires 1st, before creation of fragment or any views
     // The onAttach method is called when the Fragment instance is associated with an Activity.
     // This does not mean the Activity is fully initialized.
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mAdapter = new MessageAdapter(context, mMessages);
-        if (context instanceof Activity){
-            //this.listener = (MainActivity) context;
-        }
-    }
+
 
 
     @Override
@@ -215,32 +208,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         return super.onOptionsItemSelected(item);
     }
-<<<<<<< HEAD:app/src/main/java/com/github/nkzawa/socketio/androidchat/MainFragment.java
-
-    public boolean onNavigationItemSelected(MenuItem item){
-        //Navigation drawer item clicks here.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.account) {
-            leave();
-            return true;
-        }else if (id == R.id.viewUsers) {
-            leave();
-            return true;
-        }else if (id == R.id.settings) {
-            leave();
-            return true;
-        }else if(id == R.id.tsettings){
-            leave();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-=======
->>>>>>> master:app/src/main/java/com/copycat/MainFragment.java
     private void addLog(String message) {
         mMessages.add(new Message.Builder(Message.TYPE_LOG)
                 .message(message).build());
