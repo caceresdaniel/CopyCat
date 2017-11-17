@@ -11,9 +11,15 @@ import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity
 {
+<<<<<<< HEAD
     TextView splashTitleText;
     Typeface typefaceForSplashTitleText;
     ImageView copycatImage;
+=======
+    TextView txt;
+    Typeface typeface;
+    private static int SPLASH_TIME_OUT= 5000;
+>>>>>>> 99829ddc59c78ef7fd14d556b6050a8baeab2d9b
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +41,7 @@ public class SplashScreen extends AppCompatActivity
                 startActivity(intent);
                 finish();
             }
+<<<<<<< HEAD
 
             @Override
             public void onAnimationRepeat(Animation animation) {
@@ -46,6 +53,12 @@ public class SplashScreen extends AppCompatActivity
         splashTitleText = (TextView)findViewById(R.id.textView);
         typefaceForSplashTitleText = Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
         splashTitleText.setTypeface(typefaceForSplashTitleText);
+=======
+        },SPLASH_TIME_OUT);
+        txt= (TextView)findViewById(R.id.textView);
+        typeface=Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
+        txt.setTypeface(typeface);
+>>>>>>> 99829ddc59c78ef7fd14d556b6050a8baeab2d9b
     }
 
 }

@@ -34,7 +34,6 @@ import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
 public class LoginActivity extends Activity implements View.OnClickListener {
 
     private EditText mUsernameView;
-
     private String mUsername;
 
     private CheckBox ageRequirement;
@@ -100,6 +99,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                               @Override
+<<<<<<< HEAD
                                               public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                                   //spinner.setOnItemSelectedListener(this);
                                                   languageTextView.setText("Select a Language: ");
@@ -107,16 +107,24 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                                                   selectedlanguage = spinner.getItemAtPosition(position).toString();
 
 
+=======
+                                              public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                                              {
+                                                  //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
+                                                  selectedlanguage =  spinner.getItemAtPosition(position).toString();
+>>>>>>> 99829ddc59c78ef7fd14d556b6050a8baeab2d9b
                                               }
 
                                               @Override
                                               public void onNothingSelected(AdapterView<?> parent) {
 
                                               }
-
                                           }
         );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 99829ddc59c78ef7fd14d556b6050a8baeab2d9b
         mSocket.on("login", onLogin);
     }
 
@@ -185,7 +193,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 return;
             }
 
-
             Intent intent = new Intent();
             intent.putExtra("username", mUsername);
             intent.putExtra("numUsers", numUsers);
@@ -195,4 +202,3 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     };
 }
-

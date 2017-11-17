@@ -33,8 +33,6 @@ public class Message {
 
         public Builder username(String username) {
             mUsername = username;
-            System.out.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2" +
-            "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2" + mUsername);
             return this;
         }
 
