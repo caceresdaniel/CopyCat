@@ -12,7 +12,7 @@
         android:id="@+id/imageView2"
         android:layout_width="135dp"
         android:layout_height="135dp"
-        app:srcCompat="@drawable/TransparentCircleLogo" />
+        app:srcCompat="@drawable/transparentcirclelogo" />
 
     <TextView
         android:layout_width="match_parent"
