@@ -16,13 +16,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.CheckBox;
-
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.graphics.Typeface;
 
 import static com.github.nkzawa.socketio.androidchat.R.array.languages;
@@ -31,9 +28,10 @@ import static com.github.nkzawa.socketio.androidchat.R.id.language_spinner;
 /**
  * A login screen that offers login via username.
  */
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends Activity implements View.OnClickListener{
 
     private EditText mUsernameView;
+
     private String mUsername;
 
     private CheckBox ageRequirement;
@@ -48,7 +46,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     ArrayAdapter<CharSequence> adapter;
 
     private Socket mSocket;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -59,14 +56,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         mSocket = app.getSocket();
         //Main Title
         mainTitle = (TextView) findViewById(R.id.mainHeader);
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Quantify Bold v2.6.ttf");
+        Typeface font = Typeface.createFromAsset(getAssets(),"fonts/Quantify Bold v2.6.ttf");
         mainTitle.setTypeface(font);
 
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.username_input);
 
         //Age Requirement
-        ageRequirement = (CheckBox) findViewById(R.id.age_confirmation);
+        ageRequirement = (CheckBox)findViewById(R.id.age_confirmation);
 
         ageRequirement.setOnClickListener(this);
         mUsernameView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -89,53 +86,50 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         });
 
         //Txt indicating what language was selected
-        languageTextView = (TextView) findViewById(R.id.textoflanguage);
+        languageTextView = (TextView)findViewById(R.id.textoflanguage);
         //adapter to langauge list
         spinner = (Spinner) findViewById(language_spinner);
-        adapter = ArrayAdapter.createFromResource(this, languages, android.R.layout.simple_spinner_item);
+        adapter = ArrayAdapter.createFromResource(this, languages,android.R.layout.simple_spinner_item);
         //specifying layout for dropdown
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                              @Override
-<<<<<<< HEAD
-                                              public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                  //spinner.setOnItemSelectedListener(this);
-                                                  languageTextView.setText("Select a Language: ");
-                                                  //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
-                                                  selectedlanguage = spinner.getItemAtPosition(position).toString();
-
-
-=======
-                                              public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                                              {
-                                                  //  textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
-                                                  selectedlanguage =  spinner.getItemAtPosition(position).toString();
->>>>>>> 99829ddc59c78ef7fd14d556b6050a8baeab2d9b
-                                              }
-
-                                              @Override
-                                              public void onNothingSelected(AdapterView<?> parent) {
-
-                                              }
-                                          }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                           @Override
+                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                           {
+                            //spinner.setOnItemSelectedListener(this);
+                            // textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
+                            selectedlanguage =  spinner.getItemAtPosition(position).toString();
+                           }
+                           @Override
+                           public void onNothingSelected(AdapterView<?> parent) {}
+                      }
         );
-<<<<<<< HEAD
 
-=======
->>>>>>> 99829ddc59c78ef7fd14d556b6050a8baeab2d9b
+/*
+ <AutoCompleteTextView
+            android:id="@+id/searchtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"ste
+            android:hint="@string/searchlanguage"
+            android:padding="10dp"
+            />
+             AutoCompleteTextView choose =(AutoCompleteTextView)findViewById(R.id.searchtxt);
+        choose.setAdapter(adapter);
+ */
         mSocket.on("login", onLogin);
     }
 
 
+
     //Checkbox for age Requirement
-    public void onClick(View view) {
-        CheckBox ageRequirement = (CheckBox) view;
-        if (ageRequirement.isChecked()) {
+    public void onClick(View view){
+        CheckBox ageRequirement = (CheckBox)view;
+        if(ageRequirement.isChecked()){
             ageRequirement.setError(null);
             metAgeReq = true;
-        } else {
+        }else{
             metAgeReq = false;
         }
     }
@@ -146,7 +140,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         mSocket.off("login", onLogin);
     }
-
     /**
      * Attempts to sign in the account specified by the login form.
      * If there are form errors (invalid username, missing fields, etc.), the
@@ -169,7 +162,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             return;
         }
-        if (!metAgeReq) {
+        if(!metAgeReq){
             ageRequirement.setError(getString(R.string.error_field_ageRequired));
             ageRequirement.requestFocus();
             return;
@@ -192,6 +185,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             } catch (JSONException e) {
                 return;
             }
+
 
             Intent intent = new Intent();
             intent.putExtra("username", mUsername);

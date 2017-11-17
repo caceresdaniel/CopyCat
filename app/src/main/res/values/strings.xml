@@ -28,13 +28,6 @@
     <string name="navi_viewUser">View Users</string>
     <string name="navi_settings">Account Settings</string>
     <string name="navi_tSettings">Translation Settings</string>
-
-
-    <!--languages-->
-    <string name ="languagequestion">Pick a language to read in...</string>
-    <string name="searchlanguage">Search Language</string>
-    <string name="language_submit">Submit</string>
-    <string name="language_return">Clear</string>
-
+    <string name="title_activity_test">TestActivity</string>
 
 </resources>

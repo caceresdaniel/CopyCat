@@ -73,7 +73,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     public void onAttach(Context context) {
         super.onAttach(context);
         mAdapter = new MessageAdapter(context, mMessages);
-        if (context instanceof Activity) {
+        if (context instanceof Activity){
             //this.listener = (MainActivity) context;
         }
     }
@@ -87,8 +87,8 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         ChatApplication app = (ChatApplication) getActivity().getApplication();
         mSocket = app.getSocket();
-        mSocket.on(Socket.EVENT_CONNECT, onConnect);
-        mSocket.on(Socket.EVENT_DISCONNECT, onDisconnect);
+        mSocket.on(Socket.EVENT_CONNECT,onConnect);
+        mSocket.on(Socket.EVENT_DISCONNECT,onDisconnect);
         mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
         mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
         mSocket.on("new message", onNewMessage);
@@ -213,7 +213,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         return super.onOptionsItemSelected(item);
     }
-
     private void addLog(String message) {
         mMessages.add(new Message.Builder(Message.TYPE_LOG)
                 .message(message).build());
@@ -241,6 +240,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();
     }
+
 
 
     private void addTyping(String username) {
@@ -287,7 +287,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
     private void startSignIn() {
         mUsername = null;
-        ((MainActivity) getActivity()).mUsername = null; //for safety set MainActivity mUsername to null
+        ((MainActivity)getActivity()).mUsername = null; //for safety set MainActivity mUsername to null
         Intent intent = new Intent(getActivity(), LoginActivity.class);
 
         startActivityForResult(intent, REQUEST_LOGIN);
@@ -310,8 +310,8 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (!isConnected) {
-                        if (null != mUsername)
+                    if(!isConnected) {
+                        if(null!=mUsername)
                             mSocket.emit("add user", mUsername);
                         Toast.makeText(getActivity().getApplicationContext(),
                                 R.string.connect, Toast.LENGTH_LONG).show();
@@ -368,19 +368,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                         return;
                     }
 
-<<<<<<< HEAD
-=======
-                    //                String[] params = {message};
-                    //TODO: test and debug using multiple clients; translate after message receive
-//                    try {
-//                        translatedMessage = new Translator().execute(params).get();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    } catch (ExecutionException e) {
-//                        e.printStackTrace();
-//                    }
-
->>>>>>> 99829ddc59c78ef7fd14d556b6050a8baeab2d9b
                     removeTyping(username);
 
                     try {
@@ -493,4 +480,8 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
             mSocket.emit("stop typing");
         }
     };
+
+
+
+
 }
