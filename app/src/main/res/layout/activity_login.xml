@@ -40,15 +40,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:src="@drawable/logotrans2"
+>>>>>>> master
+=======
+                android:layout_alignEnd="@+id/mainHeader"
 >>>>>>> master
                 android:layout_alignParentTop="true"
                 android:layout_gravity="center"
-                android:layout_alignEnd="@+id/mainHeader" />
+                android:src="@drawable/transparentcirclelogo" />
 
             <TextView
                 android:id="@+id/mainHeader"
