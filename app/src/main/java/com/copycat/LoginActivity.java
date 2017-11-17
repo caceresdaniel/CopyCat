@@ -97,29 +97,18 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-                                              @Override
-                                              public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                                              {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                                                   //spinner.setOnItemSelectedListener(this);
                                                   // textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
-                                                  selectedlanguage =  spinner.getItemAtPosition(position).toString();
-                                              }
-                                              @Override
-                                              public void onNothingSelected(AdapterView<?> parent) {}
-                                          }
-        );
+                selectedlanguage =  spinner.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
 
-/*
- <AutoCompleteTextView
-            android:id="@+id/searchtxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"ste
-            android:hint="@string/searchlanguage"
-            android:padding="10dp"
-            />
-             AutoCompleteTextView choose =(AutoCompleteTextView)findViewById(R.id.searchtxt);
-        choose.setAdapter(adapter);
- */
+        });
+
         mSocket.on("login", onLogin);
     }
 
