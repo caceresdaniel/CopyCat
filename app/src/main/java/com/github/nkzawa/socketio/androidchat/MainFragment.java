@@ -248,17 +248,16 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     }
 
 
-    //This will be where we will add the translation.
+    //Asynchronously translate message
     private void addMessage(String username, String message) throws ExecutionException, InterruptedException {
-        //TODO: add targetLanguage translation code to params array
         senderUsername = username;
         String[] params = {message, targetLanguageCode};
         new Translator(this).execute(params);
     }
 
+    //update UI onTranslationFinish, very important to the Async paradigm
     @Override
     public void onTranslationFinish(String translatedMsg) {
-        //update UI
         mMessages.add(new Message.Builder(Message.TYPE_MESSAGE)
                 .username(senderUsername).message(translatedMsg).build());
         mAdapter.notifyItemInserted(mMessages.size() - 1);
@@ -311,8 +310,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
     private void startSignIn() {
         mUsername = null;
-        ((MainActivity)getActivity()).mUsername = null;
-        //for safety set MainActivity mUsername to null
+        ((MainActivity)getActivity()).mUsername = null; //for safety set MainActivity mUsername to null
         Intent intent = new Intent(getActivity(), LoginActivity.class);
 
         startActivityForResult(intent, REQUEST_LOGIN);
@@ -392,16 +390,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                         Log.e(TAG, e.getMessage());
                         return;
                     }
-
-                    //                String[] params = {message};
-                    //TODO: test and debug using multiple clients; translate after message receive
-//                    try {
-//                        translatedMessage = new Translator().execute(params).get();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    } catch (ExecutionException e) {
-//                        e.printStackTrace();
-//                    }
 
                     removeTyping(username);
 
