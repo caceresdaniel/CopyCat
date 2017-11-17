@@ -19,4 +19,7 @@
     <color name="grey1">#5a595b</color>
     <color name="grey2">#303030</color>
     <color name="fontGrey">#efefef</color>
+    <color name="weakGrey">#8d8d8d</color>
+    <color name="buttonGrey">#444444</color>
+
 </resources>
