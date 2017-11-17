@@ -9,8 +9,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.copycat.R;
-
 public class SplashScreen extends AppCompatActivity
 {
     TextView splashTitleText;
@@ -23,7 +21,7 @@ public class SplashScreen extends AppCompatActivity
 
         //SplashScreen animation rotation and Intent to next (MainActivity)
         copycatImage = (ImageView)findViewById(R.id.imageView);
-        final Animation animation= AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate_image);
+        final Animation animation= AnimationUtils.loadAnimation(getBaseContext(),R.anim.bounce_image);
         copycatImage.startAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener()
         {
