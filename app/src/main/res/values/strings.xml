@@ -27,7 +27,7 @@
     <string name="navi_acc">Account</string>
     <string name="navi_viewUser">View Users</string>
     <string name="navi_settings">Account Settings</string>
-    <string name="navi_tSettings">Translation Settings</string>
+    <string name="Info">Info</string>
     <string name="title_activity_test">TestActivity</string>
 
 </resources>
