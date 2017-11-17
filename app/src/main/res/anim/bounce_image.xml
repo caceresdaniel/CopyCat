@@ -5,7 +5,7 @@
 
     <!-- Use your working translate animation here-->
     <translate
-        android:duration="3500"
+        android:duration="3250"
         android:fromYDelta="-100%p"
         android:toXDelta="0%p" />
 </set>
