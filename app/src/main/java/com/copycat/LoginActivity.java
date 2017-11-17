@@ -97,6 +97,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+<<<<<<< HEAD:app/src/main/java/com/github/nkzawa/socketio/androidchat/LoginActivity.java
                                               @Override
                                               public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                                               {
@@ -107,6 +108,18 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                                               @Override
                                               public void onNothingSelected(AdapterView<?> parent) {}
                                           }
+=======
+                           @Override
+                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                           {
+                            //spinner.setOnItemSelectedListener(this);
+                            // textview.setText(textview.getText()+ parent.getItemAtPosition(position).toString());
+                            selectedlanguage =  spinner.getItemAtPosition(position).toString();
+                           }
+                           @Override
+                           public void onNothingSelected(AdapterView<?> parent) {}
+                      }
+>>>>>>> master:app/src/main/java/com/copycat/LoginActivity.java
         );
 
 /*
@@ -197,4 +210,8 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             finish();
         }
     };
+<<<<<<< HEAD:app/src/main/java/com/github/nkzawa/socketio/androidchat/LoginActivity.java
 }
+=======
+}
+>>>>>>> master:app/src/main/java/com/copycat/LoginActivity.java

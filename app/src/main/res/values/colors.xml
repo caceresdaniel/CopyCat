@@ -12,6 +12,14 @@
     <color name="username9">#3824aa</color>
     <color name="username10">#a700ff</color>
     <color name="username11">#d300e7</color>
+    <color name="white">#ffffff</color>
+
+    <!-- Colors for the layout -->
+    <color name="grey1">#5a595b</color>
+    <color name="grey2">#303030</color>
+    <color name="fontGrey">#efefef</color>
+    <color name="weakGrey">#8d8d8d</color>
+    <color name="buttonGrey">#444444</color>
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>

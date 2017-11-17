@@ -6,7 +6,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.nkzawa.socketio.androidchat.SplashScreen">
+    tools:context="com.copycat.SplashScreen">
 
     <TextView
         android:id="@+id/textView"
@@ -28,6 +28,11 @@
         android:layout_height="250dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+<<<<<<< HEAD
         android:layout_marginTop="123dp"
         app:srcCompat="@drawable/ff" />
+=======
+        android:layout_marginTop="127dp"
+        app:srcCompat="@drawable/logo1" />
+>>>>>>> master
 </RelativeLayout>

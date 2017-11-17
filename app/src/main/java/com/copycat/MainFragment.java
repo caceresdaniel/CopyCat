@@ -1,4 +1,4 @@
-package com.github.nkzawa.socketio.androidchat;
+package com.copycat;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,6 +24,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.copycat.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -213,6 +215,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         return super.onOptionsItemSelected(item);
     }
+<<<<<<< HEAD:app/src/main/java/com/github/nkzawa/socketio/androidchat/MainFragment.java
 
     public boolean onNavigationItemSelected(MenuItem item){
         //Navigation drawer item clicks here.
@@ -236,6 +239,8 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         return super.onOptionsItemSelected(item);
     }
 
+=======
+>>>>>>> master:app/src/main/java/com/copycat/MainFragment.java
     private void addLog(String message) {
         mMessages.add(new Message.Builder(Message.TYPE_LOG)
                 .message(message).build());

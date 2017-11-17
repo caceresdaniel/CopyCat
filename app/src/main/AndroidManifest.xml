@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.github.nkzawa.socketio.androidchat">
+=======
+    package="com.copycat">
+>>>>>>> master
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+<<<<<<< HEAD
         android:name=".ChatApplication"
+=======
+        android:name="com.copycat.ChatApplication"
+>>>>>>> master
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
+<<<<<<< HEAD
             android:name=".SplashScreen"
+=======
+            android:name="com.copycat.SplashScreen"
+>>>>>>> master
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +32,7 @@
             </intent-filter>
         </activity>
         <activity
+<<<<<<< HEAD
             android:name=".MainActivity"
             android:label="@string/app_name">
 
@@ -30,6 +43,19 @@
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="adjustResize|stateVisible">
         </activity>
+=======
+            android:name="com.copycat.MainActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name="com.copycat.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustResize|stateVisible"></activity>
+        <activity
+            android:name="com.copycat.ViewUsers"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme"></activity>
+>>>>>>> master
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.github.nkzawa.socketio.androidchat;
+package com.copycat;
 
 public class Message {
 
@@ -20,10 +20,7 @@ public class Message {
         return mMessage;
     };
 
-    public String getUsername() {
-        return mUsername;
-    };
-
+    public String getUsername() { return mUsername; };
 
     public static class Builder {
         private final int mType;
@@ -36,6 +33,8 @@ public class Message {
 
         public Builder username(String username) {
             mUsername = username;
+            System.out.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2" +
+            "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2" + mUsername);
             return this;
         }
 
