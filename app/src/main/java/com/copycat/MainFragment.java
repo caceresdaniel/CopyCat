@@ -25,8 +25,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.copycat.R;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,7 +45,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
     private static final int REQUEST_LOGIN = 0;
 
-    private static final int TYPING_TIMER_LENGTH = 600;
+    private static final int TYPING_TIMER_LENGTH = 3000;
 
     private RecyclerView mMessagesView;
     private EditText mInputMessageView;
@@ -159,6 +157,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     mTyping = true;
                     mSocket.emit("typing");
                 }
+
 
                 mTypingHandler.removeCallbacks(onTypingTimeout);
                 mTypingHandler.postDelayed(onTypingTimeout, TYPING_TIMER_LENGTH);
@@ -482,7 +481,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
             mSocket.emit("stop typing");
         }
     };
-
 
 
 

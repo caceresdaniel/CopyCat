@@ -38,6 +38,7 @@
                 android:textAllCaps="true"
                 android:paddingTop="27dp"
                 android:paddingLeft="14dp"
+                android:layout_marginRight ="10dp"
                 android:layout_gravity="center_horizontal"
                 android:textSize="35sp"/>
         </LinearLayout>
@@ -50,7 +51,6 @@
             android:paddingTop="15dp">
             <EditText
                 android:id="@+id/username_input"
-                android:imeActionId="@+id/login"
                 android:layout_width="263dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.69"
@@ -69,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:id ="@+id/textoflanguage"
                 android:text="Select Language"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:textColor="@color/weakGrey"
                 android:textSize="15dp"/>
@@ -79,6 +80,7 @@
                 android:id ="@+id/language_spinner"
                 android:textAlignment="center"
                 android:textSize="15sp"
+                android:layout_marginTop="3dp"
                 android:background="@color/buttonGrey"
                 android:padding="6dp">
             </Spinner></LinearLayout>
@@ -90,7 +92,7 @@
             android:duplicateParentState="true"
             android:focusableInTouchMode="true"
             android:layout_gravity="center_horizontal"
-            android:onClick="confirmAge"
+            android:onClick="onClick"
             android:text="@string/age_requirement"
             android:layout_marginTop="10dp"/>
         <Button
