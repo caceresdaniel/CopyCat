@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "I'm so", Toast.LENGTH_LONG).show();
                 break;
             case R.id.settings:
-                Toast.makeText(this, "done", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
                 break;
             case R.id.info:
-                Toast.makeText(this, "with myself", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
                 break;
         }
 
