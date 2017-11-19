@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "I'm so", Toast.LENGTH_LONG).show();
                 break;
             case R.id.settings:
+                Intent s = new Intent(MainActivity.this, LanguageSettings.class);
+                startActivity(s);
                 Toast.makeText(this, "done", Toast.LENGTH_LONG).show();
                 break;
             case R.id.info:
