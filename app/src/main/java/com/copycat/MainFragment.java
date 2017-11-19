@@ -190,6 +190,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         targetLanguageCode = data.getStringExtra("targetLanguage");
 
         addLog(getResources().getString(R.string.message_welcome));
+        ((MainActivity)getActivity()).usersInChat.add(mUsername);
         addParticipantsLog(numUsers);
     }
 
@@ -295,6 +296,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     }
 
     private void leave() {
+        ((MainActivity)getActivity()).usersInChat.remove(mUsername);
         mUsername = null;
         mSocket.disconnect();
         mSocket.connect();
@@ -401,6 +403,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     }
 
                     addLog(getResources().getString(R.string.message_user_joined, username));
+                    ((MainActivity)getActivity()).usersInChat.add(username);
                     addParticipantsLog(numUsers);
                 }
             });
@@ -425,6 +428,8 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     }
 
                     addLog(getResources().getString(R.string.message_user_left, username));
+                    //TODO: bug to test; somebody with same username could potentially clear username out of submenu
+                    ((MainActivity)getActivity()).usersInChat.remove(username);
                     addParticipantsLog(numUsers);
                     removeTyping(username);
                 }

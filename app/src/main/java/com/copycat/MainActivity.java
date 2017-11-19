@@ -1,7 +1,6 @@
 package com.copycat;
 
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,13 +8,17 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.copycat.R;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolBar;
     private TextView usernameTV;
 
+    private boolean isUsersInChatSubMenuDisplaying = false;
+    private SubMenu usersInChatSubMenu;
+
+    protected ArrayList<String> usersInChat = new ArrayList<>();
     protected String mUsername;
 
     @Override
@@ -39,14 +46,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolBar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_header);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         //instantiate NavigationView
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = mNavigationView.getHeaderView(0);
 
+        //instantiate usersInChatSubMenu
+        Menu m = mNavigationView.getMenu();
+        usersInChatSubMenu = m.addSubMenu("Users");
+
         //instantiate TextView to display username on navigation bar
-        usernameTV = (TextView)headerView.findViewById(R.id.username_header);
+        usernameTV = (TextView) headerView.findViewById(R.id.username_header);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -55,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setNavigationItemSelectedListener(this);
 
     }
+
     //update username TextView in navigation bar on LoginActivity Result; activity is started in mainFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -66,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -81,21 +93,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
                 break;
             case R.id.viewUsers:
-                Intent viewUsersIntent = new Intent(MainActivity.this, ViewUsersActivity.class);
-                startActivity(viewUsersIntent);
+                if (!isUsersInChatSubMenuDisplaying) {
+                    for (String username : usersInChat) {
+                        usersInChatSubMenu.add(username);
+                    }
+                    isUsersInChatSubMenuDisplaying = true;
+                } else{
+                    usersInChatSubMenu.clear();
+                    isUsersInChatSubMenuDisplaying = false;
+                }
                 break;
             case R.id.settings:
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivity(settingsIntent);
                 break;
             case R.id.info:
-                Intent infoIntent = new Intent (this, InfoActivity.class);
+                Intent infoIntent = new Intent(this, InfoActivity.class);
                 startActivity(infoIntent);
                 break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.navigation_header);
-        drawer.closeDrawer(GravityCompat.START);
+        if (itemId != R.id.viewUsers)
+            drawer.closeDrawer(GravityCompat.START);
     }
 
 

@@ -28,7 +28,6 @@
             android:theme="@style/Theme.AppCompat"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity android:name=".InfoActivity" />
-        <activity android:name=".ViewUsersActivity" />
         <activity android:name=".SettingsActivity"></activity>
     </application>
 
