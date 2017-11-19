@@ -96,25 +96,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    private void hideKeyBoardIfNavigationViewIsFocused(){
-        View view = this.getCurrentFocus();
-        if (view == null) {
-            view = new View(this);
-        }
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
-
-
 
     private void displaySelectedScreen(int itemId) {
-        //if virtual keyboard is open, hide it on navigation bar
-        hideKeyBoardIfNavigationViewIsFocused();
-
-
         //creating fragment object
         //initializing the fragment object which is selected
         switch (itemId) {
