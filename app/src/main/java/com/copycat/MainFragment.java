@@ -428,8 +428,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     }
 
                     addLog(getResources().getString(R.string.message_user_left, username));
-                    //TODO: bug to test; somebody with same username could potentially clear username out of submenu
-                    ((MainActivity)getActivity()).usersInChat.remove(username);
+                    // check to remove duplicate username
+                    if (!(mUsername.toString().equals(username.toString())))
+                        ((MainActivity)getActivity()).usersInChat.remove(username);
                     addParticipantsLog(numUsers);
                     removeTyping(username);
                 }

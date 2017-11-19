@@ -1,6 +1,7 @@
 package com.copycat;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolBar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_header);
+        //drawerListener that closes virtual keyboard on opening NavigationView
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener(){
+            @Override public void onDrawerSlide(View drawerView, float slideOffset) {}
+            @Override public void onDrawerOpened(View drawerView) {}
+            @Override public void onDrawerClosed(View drawerView) {}
+            @Override public void onDrawerStateChanged(int newState) {
+                final InputMethodManager imm = (InputMethodManager)MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mDrawerLayout.getWindowToken(), 0);
+            }
+        });
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         //instantiate NavigationView
@@ -84,7 +96,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    private void hideKeyBoardIfNavigationViewIsFocused(){
+        View view = this.getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+
+
+
     private void displaySelectedScreen(int itemId) {
+        //if virtual keyboard is open, hide it on navigation bar
+        hideKeyBoardIfNavigationViewIsFocused();
+
 
         //creating fragment object
         //initializing the fragment object which is selected
