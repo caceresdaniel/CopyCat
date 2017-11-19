@@ -81,15 +81,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
                 break;
             case R.id.viewUsers:
-                Intent i = new Intent(MainActivity.this, ViewUsers.class);
-                startActivity(i);
-                Toast.makeText(this, "I'm so", Toast.LENGTH_LONG).show();
+                Intent viewUsersIntent = new Intent(MainActivity.this, ViewUsersActivity.class);
+                startActivity(viewUsersIntent);
                 break;
             case R.id.settings:
-                Toast.makeText(this, "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
                 break;
             case R.id.info:
-                Toast.makeText(this, "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
+                Intent infoIntent = new Intent (this, InfoActivity.class);
+                startActivity(infoIntent);
                 break;
         }
 

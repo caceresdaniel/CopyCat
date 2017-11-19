@@ -1,15 +1,13 @@
 package com.copycat;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-import com.copycat.R;
+public class ViewUsersActivity extends AppCompatActivity {
 
-public class ViewUsers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_view_users);
     }
-
 }
