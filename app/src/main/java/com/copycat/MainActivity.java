@@ -1,7 +1,7 @@
 package com.copycat;
 
 
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,13 +9,18 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.SubMenu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.copycat.R;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +32,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolBar;
     private TextView usernameTV;
 
+    private boolean isUsersInChatSubMenuDisplaying = false;
+    private SubMenu usersInChatSubMenu;
+
+    protected ArrayList<String> usersInChat = new ArrayList<>();
     protected String mUsername;
 
     @Override
@@ -39,14 +48,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolBar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_header);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
+        //drawerListener that closes virtual keyboard on opening NavigationView
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener(){
+            @Override public void onDrawerSlide(View drawerView, float slideOffset) {}
+            @Override public void onDrawerOpened(View drawerView) {}
+            @Override public void onDrawerClosed(View drawerView) {}
+            @Override public void onDrawerStateChanged(int newState) {
+                final InputMethodManager imm = (InputMethodManager)MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mDrawerLayout.getWindowToken(), 0);
+            }
+        });
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         //instantiate NavigationView
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = mNavigationView.getHeaderView(0);
 
+        //instantiate usersInChatSubMenu
+        Menu m = mNavigationView.getMenu();
+        usersInChatSubMenu = m.addSubMenu("Users");
+
         //instantiate TextView to display username on navigation bar
-        usernameTV = (TextView)headerView.findViewById(R.id.username_header);
+        usernameTV = (TextView) headerView.findViewById(R.id.username_header);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -55,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setNavigationItemSelectedListener(this);
 
     }
+
     //update username TextView in navigation bar on LoginActivity Result; activity is started in mainFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -66,14 +90,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void displaySelectedScreen(int itemId) {
 
+    private void displaySelectedScreen(int itemId) {
         //creating fragment object
         //initializing the fragment object which is selected
         switch (itemId) {
@@ -81,22 +105,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
                 break;
             case R.id.viewUsers:
-                Intent i = new Intent(MainActivity.this, ViewUsers.class);
-                startActivity(i);
-                Toast.makeText(this, "I'm so", Toast.LENGTH_LONG).show();
+                if (!isUsersInChatSubMenuDisplaying) {
+                    for (String username : usersInChat) {
+                        usersInChatSubMenu.add(username);
+                    }
+                    isUsersInChatSubMenuDisplaying = true;
+                } else{
+                    usersInChatSubMenu.clear();
+                    isUsersInChatSubMenuDisplaying = false;
+                }
                 break;
             case R.id.settings:
+<<<<<<< HEAD
                 Intent s = new Intent(MainActivity.this, LanguageSettings.class);
                 startActivity(s);
                 Toast.makeText(this, "done", Toast.LENGTH_LONG).show();
+=======
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+>>>>>>> 7fa8035d568737cb677f545126fc93879ea67ef4
                 break;
             case R.id.info:
-                Toast.makeText(this, "with myself", Toast.LENGTH_LONG).show();
+                Intent infoIntent = new Intent(this, InfoActivity.class);
+                startActivity(infoIntent);
                 break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.navigation_header);
-        drawer.closeDrawer(GravityCompat.START);
+        if (itemId != R.id.viewUsers)
+            drawer.closeDrawer(GravityCompat.START);
     }
 
 

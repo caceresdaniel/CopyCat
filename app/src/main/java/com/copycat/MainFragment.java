@@ -23,6 +23,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+<<<<<<< HEAD
+=======
+
+import org.json.JSONArray;
+>>>>>>> 7fa8035d568737cb677f545126fc93879ea67ef4
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,7 +48,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
     private static final int REQUEST_LOGIN = 0;
 
-    private static final int TYPING_TIMER_LENGTH = 600;
+    private static final int TYPING_TIMER_LENGTH = 3000;
 
     private RecyclerView mMessagesView;
     private EditText mInputMessageView;
@@ -149,6 +154,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     mSocket.emit("typing");
                 }
 
+
                 mTypingHandler.removeCallbacks(onTypingTimeout);
                 mTypingHandler.postDelayed(onTypingTimeout, TYPING_TIMER_LENGTH);
             }
@@ -178,6 +184,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         mUsername = data.getStringExtra("username");
         numUsers = data.getIntExtra("numUsers", 1);
         targetLanguageCode = data.getStringExtra("targetLanguage");
+        //populate usersInChat List for MainActivity
+        ((MainActivity)getActivity()).usersInChat = data.getStringArrayListExtra("users");
+
 
         addLog(getResources().getString(R.string.message_welcome));
         addParticipantsLog(numUsers);
@@ -284,7 +293,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         startActivityForResult(intent, REQUEST_LOGIN);
     }
 
-    private void leave() {
+    private void leave() { //TODO: test this part of code, not sure if it does anything:
         mUsername = null;
         mSocket.disconnect();
         mSocket.connect();
@@ -380,9 +389,11 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                 @Override
                 public void run() {
                     JSONObject data = (JSONObject) args[0];
+                    JSONArray usernames;
                     String username;
                     int numUsers;
                     try {
+                        usernames = data.getJSONArray("users");
                         username = data.getString("username");
                         numUsers = data.getInt("numUsers");
                     } catch (JSONException e) {
@@ -390,7 +401,25 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                         return;
                     }
 
+                    //TODO: refactor and make into function
+                    ArrayList<String> usernameList = new ArrayList<>();
+
+                    if (usernames != null) {
+                        for (int i=0;i<usernames.length();i++){
+                            try {
+                                if (usernames.getString(i) != null || ((MainActivity)getActivity()).usersInChat.contains(usernames.getString(i)) || usernames.getString(i).equals("null")) {
+                                    usernameList.add(usernames.getString(i));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    ((MainActivity)getActivity()).usersInChat = usernameList;
+
                     addLog(getResources().getString(R.string.message_user_joined, username));
+                 // ((MainActivity)getActivity()).usersInChat.add(username);
                     addParticipantsLog(numUsers);
                 }
             });
@@ -405,14 +434,34 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                 public void run() {
                     JSONObject data = (JSONObject) args[0];
                     String username;
+                    JSONArray usernames;
                     int numUsers;
                     try {
+                        usernames = data.getJSONArray("users");
                         username = data.getString("username");
                         numUsers = data.getInt("numUsers");
                     } catch (JSONException e) {
                         Log.e(TAG, e.getMessage());
                         return;
                     }
+                    mSocket.emit("user left", username);
+
+                    //TODO: refactor and make into function
+                    ArrayList<String> usernameList = new ArrayList<>();
+
+                    if (usernames != null) {
+                        for (int i=0;i<usernames.length();i++){
+                            try {
+                                if (usernames.getString(i) != null || ((MainActivity)getActivity()).usersInChat.contains(usernames.getString(i)) || usernames.getString(i).equals("null")) {
+                                    usernameList.add(usernames.getString(i));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    ((MainActivity)getActivity()).usersInChat = usernameList;
 
                     addLog(getResources().getString(R.string.message_user_left, username));
                     addParticipantsLog(numUsers);
@@ -471,7 +520,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
             mSocket.emit("stop typing");
         }
     };
-
 
 
 
