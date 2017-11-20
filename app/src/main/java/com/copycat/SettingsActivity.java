@@ -29,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +66,10 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedlanguage =  parent.getItemAtPosition(position).toString();
-               // Translator translator= new Translator();
-                Toast.makeText(getApplicationContext(), "Language Changed to :"+selectedlanguage, Toast.LENGTH_SHORT).show();
-               // Toast.makeText(getApplicationContext(), "Language :"+targetLanguageCode, Toast.LENGTH_SHORT).show();
+                Intent intent = getIntent();
+                targetLanguageCode = intent.getStringExtra("targetLanguage");
+                //Toast.makeText(getApplicationContext(), "Language Changed to :"+selectedlanguage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Language :"+targetLanguageCode, Toast.LENGTH_SHORT).show();
 
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -75,14 +77,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         });
 
-       // AutoCompleteTextView search =(AutoCompleteTextView)findViewById(R.id.searchtxt);
-       // choose.setAdapter(adapter);
+
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        targetLanguageCode= data.getStringExtra("targetLanguage");
-
+        //  targetLanguageCode= data.getStringExtra("targetLanguage");
     }
 
 }

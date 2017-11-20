@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolBar;
     private TextView usernameTV;
     private TextView languageTV;
+    String name;
 
     private boolean isUsersInChatSubMenuDisplaying = false;
     private SubMenu usersInChatSubMenu;
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
         mUsername = data.getStringExtra("username");
         usernameTV.setText(mUsername);
         mLanguage= data.getStringExtra("targetLanguage");
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.settings:
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                settingsIntent.putExtra("targetLanguage", mLanguage);
                 startActivity(settingsIntent);
                 break;
             case R.id.info:
