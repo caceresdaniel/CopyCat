@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolBar;
     private TextView usernameTV;
+    private TextView languageTV;
+    protected String  mLanguage;
 
     private boolean isUsersInChatSubMenuDisplaying = false;
     private SubMenu usersInChatSubMenu;
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //instantiate TextView to display username on navigation bar
         usernameTV = (TextView) headerView.findViewById(R.id.username_header);
+        languageTV =(TextView) headerView.findViewById(R.id.language_header);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -86,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mUsername = data.getStringExtra("username");
         usernameTV.setText(mUsername);
+        mLanguage= data.getStringExtra("targetLanguage");
+        languageTV.setText(mLanguage);
+
     }
 
     @Override
@@ -116,14 +122,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
             case R.id.settings:
-<<<<<<< HEAD
-                Intent s = new Intent(MainActivity.this, LanguageSettings.class);
-                startActivity(s);
-                Toast.makeText(this, "done", Toast.LENGTH_LONG).show();
-=======
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivity(settingsIntent);
->>>>>>> 7fa8035d568737cb677f545126fc93879ea67ef4
                 break;
             case R.id.info:
                 Intent infoIntent = new Intent(this, InfoActivity.class);

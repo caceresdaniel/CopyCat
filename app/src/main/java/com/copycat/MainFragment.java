@@ -1,6 +1,7 @@
 package com.copycat;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,11 +24,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< HEAD
-=======
 
 import org.json.JSONArray;
->>>>>>> 7fa8035d568737cb677f545126fc93879ea67ef4
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -72,7 +70,14 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     // This event fires 1st, before creation of fragment or any views
     // The onAttach method is called when the Fragment instance is associated with an Activity.
     // This does not mean the Activity is fully initialized.
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mAdapter = new MessageAdapter(context, mMessages);
+        if (context instanceof Activity){
+            //this.listener = (MainActivity) context;
+        }
+    }
 
 
     @Override
@@ -184,6 +189,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         mUsername = data.getStringExtra("username");
         numUsers = data.getIntExtra("numUsers", 1);
         targetLanguageCode = data.getStringExtra("targetLanguage");
+
         //populate usersInChat List for MainActivity
         ((MainActivity)getActivity()).usersInChat = data.getStringArrayListExtra("users");
 
@@ -419,7 +425,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     ((MainActivity)getActivity()).usersInChat = usernameList;
 
                     addLog(getResources().getString(R.string.message_user_joined, username));
-                 // ((MainActivity)getActivity()).usersInChat.add(username);
+                    // ((MainActivity)getActivity()).usersInChat.add(username);
                     addParticipantsLog(numUsers);
                 }
             });

@@ -21,6 +21,14 @@
         android:singleLine="true"
         android:textAllCaps="true"
         android:textColor="@color/fontGrey"
-        android:textSize="25dp" />
+        android:textSize="20sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/language_header"
+        android:singleLine="true"
+        android:textAllCaps="true"
+        android:textColor="@color/fontGrey"
+        android:textSize="20sp" />
 
 </LinearLayout>
