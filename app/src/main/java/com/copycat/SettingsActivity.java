@@ -66,10 +66,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedlanguage =  parent.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(), "Language Changed to :"+selectedlanguage, Toast.LENGTH_SHORT).show();
+
                 Intent intent = getIntent();
-                targetLanguageCode = intent.getStringExtra("targetLanguage");
-                //Toast.makeText(getApplicationContext(), "Language Changed to :"+selectedlanguage, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "Language :"+targetLanguageCode, Toast.LENGTH_SHORT).show();
+               // targetLanguageCode = intent.getStringExtra("targetLanguage");
+                intent.putExtra("targetLanguage",selectedlanguage);
+                setResult(Activity.RESULT_OK,intent);
+                finish();
+
 
             }
             public void onNothingSelected(AdapterView<?> parent) {
