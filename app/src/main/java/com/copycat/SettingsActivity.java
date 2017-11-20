@@ -3,6 +3,7 @@ package com.copycat;
 /**
  * Created by steph on 11/19/2017.
  */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +27,6 @@ public class SettingsActivity extends AppCompatActivity {
     String targetLanguageCode;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.languagelist);
         search = (EditText) findViewById(R.id.searchtxt);
-        adapter = new ArrayAdapter<String>(SettingsActivity.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
+        adapter = new ArrayAdapter<String>(SettingsActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.languages));
         listView.setAdapter(adapter);
 
 
@@ -56,25 +56,25 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-//New Activity moved from languages to Mainfragment
+        //New Activity moved from languages to Mainfragment
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedlanguage =  listView.getItemAtPosition(position).toString();
-                Translator translator= new Translator();
-                Toast.makeText(getApplicationContext(), "Language Changed to "+selectedlanguage, Toast.LENGTH_SHORT).show();
+                selectedlanguage = listView.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(), "Language Changed to " + selectedlanguage, Toast.LENGTH_SHORT).show();
+
+                Intent returnIntent = getIntent();
+                returnIntent.putExtra("targetLanguage", selectedlanguage);
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
             }
-            public void onNothingSelected(AdapterView<?> parent) {}
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
 
         });
         //if(listView.getOnItemClick(selectedlanguage))
     }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        targetLanguageCode= data.getStringExtra("targetLanguage");
-
-    }
 
 }
