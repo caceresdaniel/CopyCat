@@ -4,6 +4,7 @@ package com.copycat;
  * Created by steph on 11/19/2017.
  */
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -13,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.copycat.R;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -58,11 +61,20 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedlanguage =  listView.getItemAtPosition(position).toString();
+                Translator translator= new Translator();
+                Toast.makeText(getApplicationContext(), "Language Changed to "+selectedlanguage, Toast.LENGTH_SHORT).show();
             }
             public void onNothingSelected(AdapterView<?> parent) {}
 
         });
         //if(listView.getOnItemClick(selectedlanguage))
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        targetLanguageCode= data.getStringExtra("targetLanguage");
+
     }
 
 }

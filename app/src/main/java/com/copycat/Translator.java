@@ -46,8 +46,6 @@ public class Translator extends AsyncTask<String, Void, String> {
             if(translatedMsg.contains("&#39;"))
                 translatedMsg = translatedMsg.replaceAll("&#39;","");
 
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
