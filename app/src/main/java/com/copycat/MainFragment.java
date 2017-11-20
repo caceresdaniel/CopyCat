@@ -193,8 +193,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         //populate usersInChat List for MainActivity
         ((MainActivity)getActivity()).usersInChat = data.getStringArrayListExtra("users");
-      // ((SettingsActivity)getActivity()).adapter= data.getStringExtra("targetLanguage");
-
+         //((SettingsActivity)getActivity().targergetLanguageCode);
 
         addLog(getResources().getString(R.string.message_welcome));
         addParticipantsLog(numUsers);
