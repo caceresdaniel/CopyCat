@@ -9,18 +9,19 @@
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="88dp"
         android:background="@color/grey2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="135dp"
-            android:layout_height="135dp"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
             android:contentDescription="@stringimg"
             android:paddingLeft="10dp"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             app:srcCompat="@drawable/transparentcirclelogo"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="6dp" />
@@ -31,17 +32,17 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginRight="10dp"
             android:paddingLeft="14dp"
-            android:paddingTop="90dp"
-            android:text="CopyCat"
+            android:paddingTop="30dp"
+            android:text="Information"
             android:textAllCaps="true"
             android:textColor="@color/fontGrey"
-            android:textSize="35sp" />
+            android:textSize="30sp" />
 
     </GridLayout>
 
     <ScrollView
         android:layout_width="360dp"
-        android:layout_height="469dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +82,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView3"
                 android:layout_marginStart="28dp"
-                android:text="Very long paragrah about us Very long paragrah about us Very long paragrah about us Very long paragrah about us Very long paragrah about us Very long paragrah about us" />
+                android:text="4 Computer Science Majors in Jose's CS3337 Software Enginnering class creating an Application in hope of an A in the class." />
 
             <TextView
                 android:id="@+id/textView6"

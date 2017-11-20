@@ -5,10 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import autovalue.shaded.com.google$.common.collect.$Iterables;
-
 public class InfoActivity extends AppCompatActivity {
 
     private TextView mainTitle;

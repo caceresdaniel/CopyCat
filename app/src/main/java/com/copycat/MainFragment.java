@@ -75,7 +75,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     public void onAttach(Context context) {
         super.onAttach(context);
         mAdapter = new MessageAdapter(context, mMessages);
-        if (context instanceof Activity){
+        if (context instanceof Activity) {
             //this.listener = (MainActivity) context;
         }
     }
@@ -89,8 +89,8 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         ChatApplication app = (ChatApplication) getActivity().getApplication();
         mSocket = app.getSocket();
-        mSocket.on(Socket.EVENT_CONNECT,onConnect);
-        mSocket.on(Socket.EVENT_DISCONNECT,onDisconnect);
+        mSocket.on(Socket.EVENT_CONNECT, onConnect);
+        mSocket.on(Socket.EVENT_DISCONNECT, onDisconnect);
         mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
         mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
         mSocket.on("new message", onNewMessage);
@@ -190,11 +190,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         mUsername = data.getStringExtra("username");
         numUsers = data.getIntExtra("numUsers", 1);
         targetLanguageCode = data.getStringExtra("targetLanguage");
-
         //populate usersInChat List for MainActivity
-        ((MainActivity)getActivity()).usersInChat = data.getStringArrayListExtra("users");
-         //((SettingsActivity)getActivity().targergetLanguageCode);
 
+        ((MainActivity) getActivity()).usersInChat = data.getStringArrayListExtra("users");
         addLog(getResources().getString(R.string.message_welcome));
         addParticipantsLog(numUsers);
     }
@@ -220,6 +218,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         return super.onOptionsItemSelected(item);
     }
+
     private void addLog(String message) {
         mMessages.add(new Message.Builder(Message.TYPE_LOG)
                 .message(message).build());
@@ -235,7 +234,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     //Asynchronously translate message
     private void addMessage(String username, String message) throws ExecutionException, InterruptedException {
         senderUsername = username;
-        String[] params = {message, targetLanguageCode};
+        String[] params = {message, ((MainActivity) getActivity()).mLanguage};
         new Translator(this).execute(params);
     }
 
@@ -247,7 +246,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();
     }
-
 
 
     private void addTyping(String username) {
@@ -288,13 +286,14 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
             e.printStackTrace();
         }
 
+
         // perform the sending message attempt.
         mSocket.emit("new message", message);
     }
 
     private void startSignIn() {
         mUsername = null;
-        ((MainActivity)getActivity()).mUsername = null; //for safety set MainActivity mUsername to null
+        ((MainActivity) getActivity()).mUsername = null; //for safety set MainActivity mUsername to null
         Intent intent = new Intent(getActivity(), LoginActivity.class);
 
         startActivityForResult(intent, REQUEST_LOGIN);
@@ -317,8 +316,8 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(!isConnected) {
-                        if(null!=mUsername)
+                    if (!isConnected) {
+                        if (null != mUsername)
                             mSocket.emit("add user", mUsername);
                         Toast.makeText(getActivity().getApplicationContext(),
                                 R.string.connect, Toast.LENGTH_LONG).show();
@@ -412,9 +411,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     ArrayList<String> usernameList = new ArrayList<>();
 
                     if (usernames != null) {
-                        for (int i=0;i<usernames.length();i++){
+                        for (int i = 0; i < usernames.length(); i++) {
                             try {
-                                if (usernames.getString(i) != null || ((MainActivity)getActivity()).usersInChat.contains(usernames.getString(i)) || usernames.getString(i).equals("null")) {
+                                if (usernames.getString(i) != null || ((MainActivity) getActivity()).usersInChat.contains(usernames.getString(i)) || usernames.getString(i).equals("null")) {
                                     usernameList.add(usernames.getString(i));
                                 }
                             } catch (JSONException e) {
@@ -423,7 +422,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                         }
                     }
 
-                    ((MainActivity)getActivity()).usersInChat = usernameList;
+                    ((MainActivity) getActivity()).usersInChat = usernameList;
 
                     addLog(getResources().getString(R.string.message_user_joined, username));
                     // ((MainActivity)getActivity()).usersInChat.add(username);
@@ -457,9 +456,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     ArrayList<String> usernameList = new ArrayList<>();
 
                     if (usernames != null) {
-                        for (int i=0;i<usernames.length();i++){
+                        for (int i = 0; i < usernames.length(); i++) {
                             try {
-                                if (usernames.getString(i) != null || ((MainActivity)getActivity()).usersInChat.contains(usernames.getString(i)) || usernames.getString(i).equals("null")) {
+                                if (usernames.getString(i) != null || ((MainActivity) getActivity()).usersInChat.contains(usernames.getString(i)) || usernames.getString(i).equals("null")) {
                                     usernameList.add(usernames.getString(i));
                                 }
                             } catch (JSONException e) {
@@ -468,7 +467,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                         }
                     }
 
-                    ((MainActivity)getActivity()).usersInChat = usernameList;
+                    ((MainActivity) getActivity()).usersInChat = usernameList;
 
                     addLog(getResources().getString(R.string.message_user_left, username));
                     addParticipantsLog(numUsers);
@@ -527,7 +526,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
             mSocket.emit("stop typing");
         }
     };
-
 
 
 }

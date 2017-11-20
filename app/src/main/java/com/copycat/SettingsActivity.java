@@ -2,7 +2,9 @@ package com.copycat;
 
 /**
  * Created by steph on 11/19/2017.
+ * edited by marco
  */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,22 +29,16 @@ public class SettingsActivity extends AppCompatActivity {
     String selectedlanguage;
     String targetLanguageCode;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        listView = (ListView) findViewById(R.id.languagelist);
         final AutoCompleteTextView search =(AutoCompleteTextView)findViewById(R.id.searchtxt);
         //search = (EditText) findViewById(R.id.searchtxt);
         adapter = new ArrayAdapter(SettingsActivity.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
         //listView.setAdapter(adapter);
         search.setAdapter(adapter);
-
-
 //Search bar for languages
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -61,33 +57,21 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-//New Activity moved from languages to Mainfragment
+        //New Activity moved from languages to Mainfragment
         search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedlanguage =  parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(), "Language Changed to :"+selectedlanguage, Toast.LENGTH_SHORT).show();
+                selectedlanguage = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(), "Language Changed to " + selectedlanguage, Toast.LENGTH_SHORT).show();
 
-                Intent intent = getIntent();
-               // targetLanguageCode = intent.getStringExtra("targetLanguage");
-                intent.putExtra("targetLanguage",selectedlanguage);
-                setResult(Activity.RESULT_OK,intent);
+                Intent returnIntent = getIntent();
+                returnIntent.putExtra("targetLanguage", selectedlanguage);
+                setResult(Activity.RESULT_OK, returnIntent);
                 finish();
-
-
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
 
         });
-
-
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //  targetLanguageCode= data.getStringExtra("targetLanguage");
-    }
-
 }

@@ -1,10 +1,9 @@
 package com.copycat;
 
-
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,16 +32,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolBar;
     private TextView usernameTV;
     private TextView languageTV;
-    String name;
+    protected String mLanguage;
 
     private boolean isUsersInChatSubMenuDisplaying = false;
     private SubMenu usersInChatSubMenu;
 
     protected ArrayList<String> usersInChat = new ArrayList<>();
-    protected ArrayAdapter<String> adapter ;
-
     protected String mUsername;
-    protected String  mLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +51,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_header);
         //drawerListener that closes virtual keyboard on opening NavigationView
-        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener(){
-            @Override public void onDrawerSlide(View drawerView, float slideOffset) {}
-            @Override public void onDrawerOpened(View drawerView) {}
-            @Override public void onDrawerClosed(View drawerView) {}
-            @Override public void onDrawerStateChanged(int newState) {
-                final InputMethodManager imm = (InputMethodManager)MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                final InputMethodManager imm = (InputMethodManager) MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(mDrawerLayout.getWindowToken(), 0);
             }
         });
@@ -77,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //instantiate TextView to display username on navigation bar
         usernameTV = (TextView) headerView.findViewById(R.id.username_header);
-        languageTV =(TextView) headerView.findViewById(R.id.language_header);
+        languageTV = (TextView) headerView.findViewById(R.id.language_header);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -91,13 +96,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
-        mUsername = data.getStringExtra("username");
-        usernameTV.setText(mUsername);
-        mLanguage= data.getStringExtra("targetLanguage");
-        languageTV.setText(mLanguage);
-
+        //check if language was changed
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                mLanguage = data.getStringExtra("targetLanguage");
+                languageTV.setText(mLanguage);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+                return;
+            }
+        } else {
+            mUsername = data.getStringExtra("username");
+            usernameTV.setText(mUsername);
+            mLanguage = data.getStringExtra("targetLanguage");
+            languageTV.setText(mLanguage);
+        }
     }
 
     @Override
@@ -122,15 +136,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         usersInChatSubMenu.add(username);
                     }
                     isUsersInChatSubMenuDisplaying = true;
-                } else{
+                } else {
                     usersInChatSubMenu.clear();
                     isUsersInChatSubMenuDisplaying = false;
                 }
                 break;
             case R.id.settings:
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                settingsIntent.putExtra("targetLanguage", mLanguage);
-                startActivity(settingsIntent);
+                startActivityForResult(settingsIntent, 1);
                 break;
             case R.id.info:
                 Intent infoIntent = new Intent(this, InfoActivity.class);
@@ -142,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (itemId != R.id.viewUsers)
             drawer.closeDrawer(GravityCompat.START);
     }
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
