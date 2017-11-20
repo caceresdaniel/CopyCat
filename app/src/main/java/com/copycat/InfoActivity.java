@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import autovalue.shaded.com.google$.common.collect.$Iterables;
 
 public class InfoActivity extends AppCompatActivity {
@@ -15,6 +17,8 @@ public class InfoActivity extends AppCompatActivity {
     private TextView howTitle;;
     private TextView moreTitle;
     private TextView genTitle;
+    private TextView transTitle;
+    private TextView actTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +44,12 @@ public class InfoActivity extends AppCompatActivity {
 
         genTitle = (TextView) findViewById(R.id.genTitle);
         genTitle.setTypeface(font);
+
+        transTitle = (TextView) findViewById(R.id.transTitle);
+        transTitle.setTypeface(font);
+
+        actTitle = (TextView) findViewById(R.id.actTitle);
+        actTitle.setTypeface(font);
+
     }
 }
