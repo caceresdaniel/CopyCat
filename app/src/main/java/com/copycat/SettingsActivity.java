@@ -12,15 +12,17 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+import java.lang.String;
 
 import com.copycat.R;
 
 public class SettingsActivity extends AppCompatActivity {
     ListView listView;
-    private ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter;
     EditText search;
     String selectedlanguage;
     String targetLanguageCode;
@@ -33,9 +35,11 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         listView = (ListView) findViewById(R.id.languagelist);
-        search = (EditText) findViewById(R.id.searchtxt);
-        adapter = new ArrayAdapter<String>(SettingsActivity.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
-        listView.setAdapter(adapter);
+        final AutoCompleteTextView search =(AutoCompleteTextView)findViewById(R.id.searchtxt);
+        //search = (EditText) findViewById(R.id.searchtxt);
+        adapter = new ArrayAdapter(SettingsActivity.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
+        //listView.setAdapter(adapter);
+        search.setAdapter(adapter);
 
 
 //Search bar for languages
@@ -57,22 +61,26 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
 //New Activity moved from languages to Mainfragment
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedlanguage =  listView.getItemAtPosition(position).toString();
-                Translator translator= new Translator();
-                Toast.makeText(getApplicationContext(), "Language Changed to "+selectedlanguage, Toast.LENGTH_SHORT).show();
+                selectedlanguage =  parent.getItemAtPosition(position).toString();
+               // Translator translator= new Translator();
+                Toast.makeText(getApplicationContext(), "Language Changed to :"+selectedlanguage, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), "Language :"+targetLanguageCode, Toast.LENGTH_SHORT).show();
+
             }
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
 
         });
-        //if(listView.getOnItemClick(selectedlanguage))
+
+       // AutoCompleteTextView search =(AutoCompleteTextView)findViewById(R.id.searchtxt);
+       // choose.setAdapter(adapter);
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         targetLanguageCode= data.getStringExtra("targetLanguage");
 
     }

@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import io.socket.client.Socket;
@@ -192,6 +193,7 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
 
         //populate usersInChat List for MainActivity
         ((MainActivity)getActivity()).usersInChat = data.getStringArrayListExtra("users");
+      // ((SettingsActivity)getActivity()).adapter= data.getStringExtra("targetLanguage");
 
 
         addLog(getResources().getString(R.string.message_welcome));

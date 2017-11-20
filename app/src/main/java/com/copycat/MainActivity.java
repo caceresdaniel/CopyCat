@@ -4,6 +4,7 @@ package com.copycat;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,13 +34,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolBar;
     private TextView usernameTV;
     private TextView languageTV;
-    protected String  mLanguage;
 
     private boolean isUsersInChatSubMenuDisplaying = false;
     private SubMenu usersInChatSubMenu;
 
     protected ArrayList<String> usersInChat = new ArrayList<>();
+    protected ArrayAdapter<String> adapter ;
+
     protected String mUsername;
+    protected String  mLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
