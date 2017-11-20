@@ -296,8 +296,11 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         startActivityForResult(intent, REQUEST_LOGIN);
     }
 
-    private void leave() {
-        ((MainActivity)getActivity()).usersInChat.remove(mUsername);
+    private void leave() { //TODO: test this part of code, not sure if it does anything:
+        if (((MainActivity)getActivity()).usersInChat.contains(mUsername)) {
+            ((MainActivity) getActivity()).usersInChat.remove(mUsername);
+        }
+        //
         mUsername = null;
         mSocket.disconnect();
         mSocket.connect();
@@ -404,8 +407,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                         Log.e(TAG, e.getMessage());
                         return;
                     }
-                    ArrayList<String> usernameList = new ArrayList<>();
 
+                    //TODO: refactor and make into function
+                    ArrayList<String> usernameList = new ArrayList<>();
 
                     if (usernames != null) {
                         for (int i=0;i<usernames.length();i++){
@@ -437,8 +441,10 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                 public void run() {
                     JSONObject data = (JSONObject) args[0];
                     String username;
+                    JSONArray usernames;
                     int numUsers;
                     try {
+                        usernames = data.getJSONArray("users");
                         username = data.getString("username");
                         numUsers = data.getInt("numUsers");
                     } catch (JSONException e) {
@@ -447,10 +453,24 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     }
                     mSocket.emit("user left", username);
 
+                    //TODO: refactor and make into function
+                    ArrayList<String> usernameList = new ArrayList<>();
+
+                    if (usernames != null) {
+                        for (int i=0;i<usernames.length();i++){
+                            try {
+                                if (usernames.getString(i) != null || ((MainActivity)getActivity()).usersInChat.contains(usernames.getString(i)) || usernames.getString(i).equals("null")) {
+                                    usernameList.add(usernames.getString(i));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    ((MainActivity)getActivity()).usersInChat = usernameList;
+
                     addLog(getResources().getString(R.string.message_user_left, username));
-                    // check to remove duplicate username
-//                    if (!(mUsername.toString().equals(username.toString())))
-//                        ((MainActivity)getActivity()).usersInChat.remove(username);
                     addParticipantsLog(numUsers);
                     removeTyping(username);
                 }
