@@ -7,6 +7,7 @@ package com.copycat;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -17,29 +18,38 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import java.lang.String;
 
 import com.copycat.R;
 
 public class SettingsActivity extends AppCompatActivity {
-    ListView listView;
     ArrayAdapter<String> adapter;
-    EditText search;
     String selectedlanguage;
-    String targetLanguageCode;
+    TextView settingsTitle;
+    TextView chooseText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        final AutoCompleteTextView search =(AutoCompleteTextView)findViewById(R.id.searchtxt);
-        //search = (EditText) findViewById(R.id.searchtxt);
-        adapter = new ArrayAdapter(SettingsActivity.this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
+        chooseText = (TextView) findViewById(R.id.chooseTxt);
+        Typeface font1 = Typeface.createFromAsset(getAssets(), "fonts/Quantify Bold v2.6.ttf");
+        chooseText.setTypeface(font1);
+
+        settingsTitle = (TextView) findViewById(R.id.infoHeader);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Quantify Bold v2.6.ttf");
+        settingsTitle.setTypeface(font);
+
+        final AutoCompleteTextView search = (AutoCompleteTextView) findViewById(R.id.searchtxt);
+        adapter = new ArrayAdapter(SettingsActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.languages));
         //listView.setAdapter(adapter);
         search.setAdapter(adapter);
-//Search bar for languages
+
+        //Search bar for languages
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -69,6 +79,7 @@ public class SettingsActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
+
             public void onNothingSelected(AdapterView<?> parent) {
             }
 
