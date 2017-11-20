@@ -72,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    // adding a whole bunch
+    // of comments
+    //to make me ahead of master by a few commits
+    // for demonstration purposes
     private void displaySelectedScreen(int itemId) {
 
         //creating fragment object
