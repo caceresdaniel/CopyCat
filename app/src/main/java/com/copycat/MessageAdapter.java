@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.copycat.R;
-
 import java.util.List;
 
 
@@ -66,7 +64,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
 
-            mUsernameView = (TextView) itemView.findViewById(R.id.username);
+            mUsernameView = (TextView) itemView.findViewById(R.id.userTitle);
             mMessageView = (TextView) itemView.findViewById(R.id.message);
         }
 

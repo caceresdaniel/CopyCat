@@ -30,19 +30,26 @@ public class SettingsActivity extends AppCompatActivity {
     String selectedlanguage;
     TextView settingsTitle;
     TextView chooseText;
-
+    TextView userTitle;
+    TextView colorTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Quantify Bold v2.6.ttf");
 
         chooseText = (TextView) findViewById(R.id.chooseTxt);
-        Typeface font1 = Typeface.createFromAsset(getAssets(), "fonts/Quantify Bold v2.6.ttf");
-        chooseText.setTypeface(font1);
+        chooseText.setTypeface(font);
 
         settingsTitle = (TextView) findViewById(R.id.infoHeader);
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Quantify Bold v2.6.ttf");
         settingsTitle.setTypeface(font);
+
+        userTitle = (TextView) findViewById(R.id.userTitle);
+        userTitle.setTypeface(font);
+
+        colorTitle = (TextView) findViewById(R.id.colorTitle);
+        colorTitle.setTypeface(font);
+
 
         final AutoCompleteTextView search = (AutoCompleteTextView) findViewById(R.id.searchtxt);
         adapter = new ArrayAdapter(SettingsActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.languages));
@@ -64,6 +71,22 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        final EditText editUser = (EditText) findViewById(R.id.editUser);
+        editUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        final EditText editColor = (EditText) findViewById(R.id.editColor);
+        editColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Subscribe to unlock this feature.", Toast.LENGTH_LONG).show();
             }
         });
 
