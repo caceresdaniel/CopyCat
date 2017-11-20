@@ -189,9 +189,11 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
         mUsername = data.getStringExtra("username");
         numUsers = data.getIntExtra("numUsers", 1);
         targetLanguageCode = data.getStringExtra("targetLanguage");
+        //populate usersInChat List for MainActivity
+        ((MainActivity)getActivity()).usersInChat = data.getStringArrayListExtra("users");
+
 
         addLog(getResources().getString(R.string.message_welcome));
-        ((MainActivity)getActivity()).usersInChat.add(mUsername);
         addParticipantsLog(numUsers);
     }
 
@@ -297,10 +299,6 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
     }
 
     private void leave() { //TODO: test this part of code, not sure if it does anything:
-        if (((MainActivity)getActivity()).usersInChat.contains(mUsername)) {
-            ((MainActivity) getActivity()).usersInChat.remove(mUsername);
-        }
-        //
         mUsername = null;
         mSocket.disconnect();
         mSocket.connect();
