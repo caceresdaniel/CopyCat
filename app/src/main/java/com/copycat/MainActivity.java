@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setTitle("  COPYCAT");
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_header);
         //drawerListener that closes virtual keyboard on opening NavigationView
         mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {

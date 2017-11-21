@@ -6,4 +6,5 @@
     android:id="@+id/nav_act"
     android:background="@color/grey2"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
 </android.support.v7.widget.Toolbar>
