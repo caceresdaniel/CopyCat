@@ -53,8 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolBar);
 
         // adds image to main nav bar
-//        getSupportActionBar().setIcon(R.drawable.);
-//        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.cc_header);
+        getSupportActionBar().setTitle("  COPYCAT");
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_header);
         //drawerListener that closes virtual keyboard on opening NavigationView
