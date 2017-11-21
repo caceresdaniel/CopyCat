@@ -423,7 +423,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     }
 
                     ((MainActivity) getActivity()).usersInChat = usernameList;
-
+                    //do it twice so submenu boolean stays the same
+                    ((MainActivity)getActivity()).displaySelectedScreen(R.id.viewUsers);
+                    ((MainActivity)getActivity()).displaySelectedScreen(R.id.viewUsers);
                     addLog(getResources().getString(R.string.message_user_joined, username));
                     // ((MainActivity)getActivity()).usersInChat.add(username);
                     addParticipantsLog(numUsers);
@@ -468,6 +470,9 @@ public class MainFragment extends Fragment implements AsyncTranslatorResponse {
                     }
 
                     ((MainActivity) getActivity()).usersInChat = usernameList;
+                    //do it twice so submenu boolean stays the same
+                    ((MainActivity)getActivity()).displaySelectedScreen(R.id.viewUsers);
+                    ((MainActivity)getActivity()).displaySelectedScreen(R.id.viewUsers);
 
                     addLog(getResources().getString(R.string.message_user_left, username));
                     addParticipantsLog(numUsers);
