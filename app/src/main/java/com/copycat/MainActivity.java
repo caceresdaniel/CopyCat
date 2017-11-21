@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    private void displaySelectedScreen(int itemId) {
+    protected void displaySelectedScreen(int itemId) {
         //creating fragment object
         //initializing the fragment object which is selected
         switch (itemId) {
